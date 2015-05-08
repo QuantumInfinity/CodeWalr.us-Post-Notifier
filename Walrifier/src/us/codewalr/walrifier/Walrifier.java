@@ -27,7 +27,7 @@ public class Walrifier extends Activity
 		mLayoutManager = new LinearLayoutManager(this);
 		mRecyclerView.setLayoutManager(mLayoutManager);
 
-		mAdapter = new MyAdapter(new String[]{"test", "test1", "test2"});
+		mAdapter = new MyAdapter(new String[]{"test0", "test1", "test2", "test3", "test4", "test5", "test6", "test7"});
 		mRecyclerView.setAdapter(mAdapter);
 	}
 	
