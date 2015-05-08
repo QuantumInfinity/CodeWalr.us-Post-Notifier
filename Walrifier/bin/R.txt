@@ -421,7 +421,9 @@ int drawable abc_textfield_default_mtrl_alpha 0x7f020037
 int drawable abc_textfield_search_activated_mtrl_alpha 0x7f020038
 int drawable abc_textfield_search_default_mtrl_alpha 0x7f020039
 int drawable abc_textfield_search_material 0x7f02003a
-int drawable walrii 0x7f02003b
+int drawable bg_repeat 0x7f02003b
+int drawable codewalrusbg 0x7f02003c
+int drawable walrii 0x7f02003d
 int id action_bar 0x7f0a0040
 int id action_bar_activity_content 0x7f0a0003
 int id action_bar_container 0x7f0a003f
@@ -435,7 +437,7 @@ int id action_menu_presenter 0x7f0a0006
 int id action_mode_bar 0x7f0a003d
 int id action_mode_bar_stub 0x7f0a003c
 int id action_mode_close_button 0x7f0a0025
-int id action_settings 0x7f0a0055
+int id action_settings 0x7f0a0054
 int id activity_chooser_view_content 0x7f0a0026
 int id alertTitle 0x7f0a0030
 int id always 0x7f0a0019
@@ -444,6 +446,7 @@ int id buttonPanel 0x7f0a0036
 int id card_view 0x7f0a004f
 int id checkbox 0x7f0a0038
 int id collapseActionView 0x7f0a001a
+int id content 0x7f0a0052
 int id contentPanel 0x7f0a0031
 int id custom 0x7f0a0035
 int id customPanel 0x7f0a0034
@@ -472,7 +475,7 @@ int id parentPanel 0x7f0a002d
 int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a003a
-int id recycler 0x7f0a0054
+int id recycler 0x7f0a0053
 int id screen 0x7f0a0015
 int id scrollView 0x7f0a0032
 int id search_badge 0x7f0a0044
@@ -497,13 +500,11 @@ int id src_over 0x7f0a0018
 int id submit_area 0x7f0a004b
 int id tabMode 0x7f0a000c
 int id textSpacerNoButtons 0x7f0a0033
+int id time 0x7f0a0051
 int id title 0x7f0a002c
 int id title_template 0x7f0a002f
+int id titlebar 0x7f0a0050
 int id topPanel 0x7f0a002e
-int id txtAdd 0x7f0a0053
-int id txtEmail 0x7f0a0052
-int id txtName 0x7f0a0050
-int id txtSurname 0x7f0a0051
 int id up 0x7f0a0001
 int id useLogo 0x7f0a0013
 int id withText 0x7f0a001d

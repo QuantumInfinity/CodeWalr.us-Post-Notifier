@@ -2039,7 +2039,9 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020038;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020039;
         public static final int abc_textfield_search_material=0x7f02003a;
-        public static final int walrii=0x7f02003b;
+        public static final int bg_repeat=0x7f02003b;
+        public static final int codewalrusbg=0x7f02003c;
+        public static final int walrii=0x7f02003d;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0040;
@@ -2055,7 +2057,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a003d;
         public static final int action_mode_bar_stub=0x7f0a003c;
         public static final int action_mode_close_button=0x7f0a0025;
-        public static final int action_settings=0x7f0a0055;
+        public static final int action_settings=0x7f0a0054;
         public static final int activity_chooser_view_content=0x7f0a0026;
         public static final int alertTitle=0x7f0a0030;
         public static final int always=0x7f0a0019;
@@ -2064,6 +2066,7 @@ containing a value of this type.
         public static final int card_view=0x7f0a004f;
         public static final int checkbox=0x7f0a0038;
         public static final int collapseActionView=0x7f0a001a;
+        public static final int content=0x7f0a0052;
         public static final int contentPanel=0x7f0a0031;
         public static final int custom=0x7f0a0035;
         public static final int customPanel=0x7f0a0034;
@@ -2092,7 +2095,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a003a;
-        public static final int recycler=0x7f0a0054;
+        public static final int recycler=0x7f0a0053;
         public static final int screen=0x7f0a0015;
         public static final int scrollView=0x7f0a0032;
         public static final int search_badge=0x7f0a0044;
@@ -2117,13 +2120,11 @@ containing a value of this type.
         public static final int submit_area=0x7f0a004b;
         public static final int tabMode=0x7f0a000c;
         public static final int textSpacerNoButtons=0x7f0a0033;
+        public static final int time=0x7f0a0051;
         public static final int title=0x7f0a002c;
         public static final int title_template=0x7f0a002f;
+        public static final int titlebar=0x7f0a0050;
         public static final int topPanel=0x7f0a002e;
-        public static final int txtAdd=0x7f0a0053;
-        public static final int txtEmail=0x7f0a0052;
-        public static final int txtName=0x7f0a0050;
-        public static final int txtSurname=0x7f0a0051;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
         public static final int withText=0x7f0a001d;
