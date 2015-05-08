@@ -3,21 +3,32 @@ package us.codewalr.walrifier;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 public class Walrifier extends Activity
 {
 	static Walrifier instance;
 	
-	View view;
+	private RecyclerView mRecyclerView;
+	private RecyclerView.Adapter<MyAdapter.ViewHolder> mAdapter;
+	private RecyclerView.LayoutManager mLayoutManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		instance = this;
-		
-		setView(new WalrifierView(this));
+		setContentView(R.layout.walrifierlayout);
+		mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+
+		mRecyclerView.setHasFixedSize(true);
+
+		mLayoutManager = new LinearLayoutManager(this);
+		mRecyclerView.setLayoutManager(mLayoutManager);
+
+		mAdapter = new MyAdapter(new String[]{"test", "test1", "test2"});
+		mRecyclerView.setAdapter(mAdapter);
 	}
 	
 	public static Walrifier getInstance()
@@ -27,12 +38,6 @@ public class Walrifier extends Activity
 	
 	public static Context getContext()
 	{
-		return instance;
-	}
-	
-	public void setView(View v)
-	{
-		this.view = v;
-		setContentView(v);
+		return (Context) instance;
 	}
 }
