@@ -1077,7 +1077,7 @@ containing a value of this type.
         public static final int abc_textfield_searchview_holo_light=0x7f020054;
         public static final int abc_textfield_searchview_right_holo_dark=0x7f020055;
         public static final int abc_textfield_searchview_right_holo_light=0x7f020056;
-        public static final int ic_launcher=0x7f020057;
+        public static final int walrii=0x7f020057;
     }
     public static final class id {
         public static final int action_bar=0x7f05001c;
@@ -2619,8 +2619,8 @@ containing a value of this type.
            @see #MenuView_android_windowAnimationStyle
          */
         public static final int[] MenuView = {
-            0x00000000, 0x010100ae, 0x0101012c, 0x0101012d,
-            0x0101012e, 0x0101012f, 0x01010130, 0x01010131
+            0x010100ae, 0x0101012c, 0x0101012d, 0x0101012e,
+            0x0101012f, 0x01010130, 0x01010131, 0x0101052f
         };
         /**
           <p>
@@ -2630,7 +2630,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#headerBackground}.
           @attr name android:headerBackground
         */
-        public static final int MenuView_android_headerBackground = 5;
+        public static final int MenuView_android_headerBackground = 4;
         /**
           <p>
           @attr description
@@ -2639,7 +2639,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#horizontalDivider}.
           @attr name android:horizontalDivider
         */
-        public static final int MenuView_android_horizontalDivider = 3;
+        public static final int MenuView_android_horizontalDivider = 2;
         /**
           <p>
           @attr description
@@ -2648,7 +2648,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#itemBackground}.
           @attr name android:itemBackground
         */
-        public static final int MenuView_android_itemBackground = 6;
+        public static final int MenuView_android_itemBackground = 5;
         /**
           <p>
           @attr description
@@ -2657,7 +2657,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#itemIconDisabledAlpha}.
           @attr name android:itemIconDisabledAlpha
         */
-        public static final int MenuView_android_itemIconDisabledAlpha = 7;
+        public static final int MenuView_android_itemIconDisabledAlpha = 6;
         /**
           <p>
           @attr description
@@ -2666,7 +2666,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#itemTextAppearance}.
           @attr name android:itemTextAppearance
         */
-        public static final int MenuView_android_itemTextAppearance = 2;
+        public static final int MenuView_android_itemTextAppearance = 1;
         /**
           <p>
           @attr description
@@ -2674,7 +2674,7 @@ containing a value of this type.
           <p>This is a private symbol.
           @attr name android:preserveIconSpacing
         */
-        public static final int MenuView_android_preserveIconSpacing = 0;
+        public static final int MenuView_android_preserveIconSpacing = 7;
         /**
           <p>
           @attr description
@@ -2683,7 +2683,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#verticalDivider}.
           @attr name android:verticalDivider
         */
-        public static final int MenuView_android_verticalDivider = 4;
+        public static final int MenuView_android_verticalDivider = 3;
         /**
           <p>
           @attr description
@@ -2692,7 +2692,7 @@ containing a value of this type.
           resource symbol {@link android.R.attr#windowAnimationStyle}.
           @attr name android:windowAnimationStyle
         */
-        public static final int MenuView_android_windowAnimationStyle = 1;
+        public static final int MenuView_android_windowAnimationStyle = 0;
         /** Attributes that can be used with a SearchView.
            <p>Includes the following attributes:</p>
            <table>
@@ -3107,3 +3107,4 @@ containing a value of this type.
         */
         public static final int View_paddingStart = 1;
     };
+}
