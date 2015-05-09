@@ -1,5 +1,8 @@
 package us.codewalr.walrifier;
 
+import java.util.ArrayList;
+
+import us.codewalr.walrifier.Post.PostType;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,9 +13,9 @@ public class Walrifier extends Activity
 {
 	static Walrifier instance;
 	
-	private RecyclerView mRecyclerView;
-	private RecyclerView.Adapter<MyAdapter.ViewHolder> mAdapter;
-	private RecyclerView.LayoutManager mLayoutManager;
+	private RecyclerView recycler;
+	private RecyclerView.Adapter<WalrusAdapter.ViewHolder> adapter;
+	private RecyclerView.LayoutManager layoutManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -20,15 +23,15 @@ public class Walrifier extends Activity
 		super.onCreate(savedInstanceState);
 		instance = this;
 		setContentView(R.layout.walrifierlayout);
-		mRecyclerView = (RecyclerView) findViewById(R.id.recycler);
+		recycler = (RecyclerView) findViewById(R.id.recycler);
 
-		mRecyclerView.setHasFixedSize(true);
+		recycler.setHasFixedSize(true);
 
-		mLayoutManager = new LinearLayoutManager(this);
-		mRecyclerView.setLayoutManager(mLayoutManager);
+		layoutManager = new LinearLayoutManager(this);
+		recycler.setLayoutManager(layoutManager);
 
-		mAdapter = new MyAdapter(new String[]{"Title 0", "Title 1"});
-		mRecyclerView.setAdapter(mAdapter);
+		adapter = new WalrusAdapter(getTempPostList());
+		recycler.setAdapter(adapter);
 	}
 	
 	public static Walrifier getInstance()
@@ -39,5 +42,14 @@ public class Walrifier extends Activity
 	public static Context getContext()
 	{
 		return instance;
+	}
+	
+	public static ArrayList<Post> getTempPostList()
+	{
+		ArrayList<Post> posts = new ArrayList<Post>();
+		for (int i=0; i<10; i++)
+			posts.add(new Post("Test post " + i, "Test_User_"+i, "Today at 66:69", "This is test text #"+i, Math.random() > 0.5 ? PostType.POST : PostType.TOPIC));
+		
+		return posts;
 	}
 }
