@@ -1,20 +1,61 @@
 <resources>
-
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
     </style>
 
-    <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <style name="background">
+		<item name="android:background">@drawable/bg_repeat</item>
     </style>
 
+    <style name="walrifiercard">
+		<item name="android:layout_margin">2dp</item>
+	</style>
+    
+	<style name="titlebar">
+		<item name="android:background">@color/titlebar</item>
+	</style>
+	
+	<style name="title">
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textColor">@color/titletext</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:layout_marginTop">5dp</item>
+		<item name="android:layout_marginRight">10dp</item>
+	</style>
+
+	<style name="time">
+		<item name="android:gravity">center_vertical|end</item>
+		<item name="android:textSize">13sp</item>
+		<item name="android:textColor">@color/timetext</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_below">@id/title</item>
+		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:layout_marginRight">10dp</item>
+		<item name="android:layout_marginBottom">5dp</item>
+	</style>
+
+	<style name="content">
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textSize">15sp</item>
+		<item name="android:textColor">@color/contenttext</item>
+		<item name="android:layout_below">@id/titlebar</item>
+		<item name="android:layout_marginTop">5dp</item>
+		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:layout_marginRight">10dp</item>
+	</style>
+	
+	<style name="poster">
+	    <item name="android:gravity">center_vertical|end</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:textColor">@color/postertext</item>
+		<item name="android:layout_alignParentRight">true</item>
+		<item name="android:textStyle">italic</item>
+		<item name="android:layout_below">@id/content</item>
+		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:layout_marginRight">10dp</item>
+		<item name="android:layout_marginBottom">5dp</item>
+	</style>
 </resources>

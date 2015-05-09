@@ -1692,19 +1692,19 @@ containing a value of this type.
         public static final int abc_config_showMenuShortcutsWhenKeyboardPresent=0x7f080003;
     }
     public static final class color {
-        public static final int abc_background_cache_hint_selector_material_dark=0x7f050037;
-        public static final int abc_background_cache_hint_selector_material_light=0x7f050038;
+        public static final int abc_background_cache_hint_selector_material_dark=0x7f05003c;
+        public static final int abc_background_cache_hint_selector_material_light=0x7f05003d;
         public static final int abc_input_method_navigation_guard=0x7f050007;
-        public static final int abc_primary_text_disable_only_material_dark=0x7f050039;
-        public static final int abc_primary_text_disable_only_material_light=0x7f05003a;
-        public static final int abc_primary_text_material_dark=0x7f05003b;
-        public static final int abc_primary_text_material_light=0x7f05003c;
-        public static final int abc_search_url_text=0x7f05003d;
+        public static final int abc_primary_text_disable_only_material_dark=0x7f05003e;
+        public static final int abc_primary_text_disable_only_material_light=0x7f05003f;
+        public static final int abc_primary_text_material_dark=0x7f050040;
+        public static final int abc_primary_text_material_light=0x7f050041;
+        public static final int abc_search_url_text=0x7f050042;
         public static final int abc_search_url_text_normal=0x7f050004;
         public static final int abc_search_url_text_pressed=0x7f050006;
         public static final int abc_search_url_text_selected=0x7f050005;
-        public static final int abc_secondary_text_material_dark=0x7f05003e;
-        public static final int abc_secondary_text_material_light=0x7f05003f;
+        public static final int abc_secondary_text_material_dark=0x7f050043;
+        public static final int abc_secondary_text_material_light=0x7f050044;
         public static final int accent_material_dark=0x7f050013;
         public static final int accent_material_light=0x7f050012;
         public static final int background_floating_material_dark=0x7f05000a;
@@ -1735,6 +1735,7 @@ containing a value of this type.
         /**  Shadow color for the first pixels around CardView. 
          */
         public static final int cardview_shadow_start_color=0x7f050002;
+        public static final int contenttext=0x7f05003a;
         public static final int dim_foreground_disabled_material_dark=0x7f050022;
         public static final int dim_foreground_disabled_material_light=0x7f050023;
         public static final int dim_foreground_material_dark=0x7f050020;
@@ -1754,6 +1755,7 @@ containing a value of this type.
         public static final int material_blue_grey_950=0x7f050036;
         public static final int material_deep_teal_200=0x7f050032;
         public static final int material_deep_teal_500=0x7f050033;
+        public static final int postertext=0x7f05003b;
         public static final int primary_dark_material_dark=0x7f05000e;
         public static final int primary_dark_material_light=0x7f05000f;
         public static final int primary_material_dark=0x7f05000c;
@@ -1774,10 +1776,13 @@ containing a value of this type.
         public static final int secondary_text_disabled_material_light=0x7f05002f;
         public static final int switch_thumb_disabled_material_dark=0x7f050018;
         public static final int switch_thumb_disabled_material_light=0x7f050019;
-        public static final int switch_thumb_material_dark=0x7f050040;
-        public static final int switch_thumb_material_light=0x7f050041;
+        public static final int switch_thumb_material_dark=0x7f050045;
+        public static final int switch_thumb_material_light=0x7f050046;
         public static final int switch_thumb_normal_material_dark=0x7f050016;
         public static final int switch_thumb_normal_material_light=0x7f050017;
+        public static final int timetext=0x7f050039;
+        public static final int titlebar=0x7f050037;
+        public static final int titletext=0x7f050038;
     }
     public static final class dimen {
         /**  Default content inset of an action bar. 
@@ -2057,13 +2062,12 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a003d;
         public static final int action_mode_bar_stub=0x7f0a003c;
         public static final int action_mode_close_button=0x7f0a0025;
-        public static final int action_settings=0x7f0a0054;
+        public static final int action_settings=0x7f0a0055;
         public static final int activity_chooser_view_content=0x7f0a0026;
         public static final int alertTitle=0x7f0a0030;
         public static final int always=0x7f0a0019;
         public static final int beginning=0x7f0a0020;
         public static final int buttonPanel=0x7f0a0036;
-        public static final int card_view=0x7f0a004f;
         public static final int checkbox=0x7f0a0038;
         public static final int collapseActionView=0x7f0a001a;
         public static final int content=0x7f0a0052;
@@ -2092,10 +2096,11 @@ containing a value of this type.
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a000b;
         public static final int parentPanel=0x7f0a002d;
+        public static final int poster=0x7f0a0053;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int radio=0x7f0a003a;
-        public static final int recycler=0x7f0a0053;
+        public static final int recycler=0x7f0a0054;
         public static final int screen=0x7f0a0015;
         public static final int scrollView=0x7f0a0032;
         public static final int search_badge=0x7f0a0044;
@@ -2127,6 +2132,7 @@ containing a value of this type.
         public static final int topPanel=0x7f0a002e;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
+        public static final int walrifiercard=0x7f0a004f;
         public static final int withText=0x7f0a001d;
         public static final int wrap_content=0x7f0a0009;
     }
@@ -2265,15 +2271,6 @@ containing a value of this type.
         public static final int Animation_AppCompat_Dialog=0x7f070049;
         public static final int Animation_AppCompat_DropDownUp=0x7f07004a;
         /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
@@ -2286,9 +2283,6 @@ containing a value of this type.
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f07011e;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
         public static final int AppTheme=0x7f07011f;
         public static final int Base_AlertDialog_AppCompat=0x7f0700c0;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f0700c1;
@@ -2666,6 +2660,13 @@ containing a value of this type.
          */
         public static final int Widget_AppCompat_Toolbar=0x7f070045;
         public static final int Widget_AppCompat_Toolbar_Button_Navigation=0x7f070046;
+        public static final int background=0x7f070120;
+        public static final int content=0x7f070125;
+        public static final int poster=0x7f070126;
+        public static final int time=0x7f070124;
+        public static final int title=0x7f070123;
+        public static final int titlebar=0x7f070122;
+        public static final int walrifiercard=0x7f070121;
     }
     public static final class styleable {
         /**  ============================================ 

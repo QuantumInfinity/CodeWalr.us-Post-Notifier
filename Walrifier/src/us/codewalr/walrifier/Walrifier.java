@@ -27,7 +27,7 @@ public class Walrifier extends Activity
 		mLayoutManager = new LinearLayoutManager(this);
 		mRecyclerView.setLayoutManager(mLayoutManager);
 
-		mAdapter = new MyAdapter(new String[]{"test0", "test1"});
+		mAdapter = new MyAdapter(new String[]{"Title 0", "Title 1"});
 		mRecyclerView.setAdapter(mAdapter);
 	}
 	
@@ -38,6 +38,6 @@ public class Walrifier extends Activity
 	
 	public static Context getContext()
 	{
-		return (Context) instance;
+		return instance;
 	}
 }
