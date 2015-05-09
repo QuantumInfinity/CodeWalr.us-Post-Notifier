@@ -569,7 +569,7 @@ int string abc_shareactionprovider_share_with_application 0x7f0b000f
 int string abc_toolbar_collapse_description 0x7f0b0004
 int string action_settings 0x7f0b0013
 int string app_name 0x7f0b0011
-int string hello_world 0x7f0b0012
+int string cw_feed_url 0x7f0b0012
 int style AlertDialog_AppCompat 0x7f070043
 int style AlertDialog_AppCompat_Light 0x7f070044
 int style Animation_AppCompat_Dialog 0x7f070049

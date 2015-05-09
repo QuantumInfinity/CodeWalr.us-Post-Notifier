@@ -2,8 +2,8 @@ package us.codewalr.walrifier;
 
 public class Post
 {
-	String title, time, content, user;
-	PostType type;
+	public String title, time, content, user, link;
+	public PostType type;
 	
 	public Post(String title, String user, String time, String content, PostType type)
 	{
@@ -12,6 +12,17 @@ public class Post
 		this.content = content;
 		this.user = user;
 		this.type = type;
+		this.link = null;
+	}
+	
+	public Post(String title, String user, String time, String content, PostType type, String link)
+	{
+		this.title = title;
+		this.time = time;
+		this.content = content;
+		this.user = user;
+		this.type = type;
+		this.link = link;
 	}
 	
 	public String getPoster()

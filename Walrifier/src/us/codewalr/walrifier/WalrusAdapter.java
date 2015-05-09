@@ -16,7 +16,12 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 	{
 		this.posts = posts;
 	}
-
+	
+	public void setPosts(ArrayList<Post> posts)
+	{
+		this.posts = posts;
+	}
+	
 	@Override
 	public WalrusAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
 	{

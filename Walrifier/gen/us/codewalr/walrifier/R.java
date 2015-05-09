@@ -2263,7 +2263,7 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0b0004;
         public static final int action_settings=0x7f0b0013;
         public static final int app_name=0x7f0b0011;
-        public static final int hello_world=0x7f0b0012;
+        public static final int cw_feed_url=0x7f0b0012;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f070043;
