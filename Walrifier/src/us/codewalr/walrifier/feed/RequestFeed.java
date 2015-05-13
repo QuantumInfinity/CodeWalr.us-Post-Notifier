@@ -18,12 +18,13 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Xml;
 
+@Deprecated
 public class RequestFeed extends AsyncTask<Integer, Void, ArrayList<Post>>
 {
 	@Override
 	protected ArrayList<Post> doInBackground(Integer... params)
 	{
-		String url = Walrifier.getContext().getString(R.string.cw_feed_url).replace("[LIM]", params[0]+"");
+		String url = Walrifier.getContext().getString(R.string.feed_url).replace("[LIM]", params[0]+"");
 		HttpURLConnection urlConnection = null;
 		try{
 			urlConnection = (HttpURLConnection) new URL(url).openConnection();

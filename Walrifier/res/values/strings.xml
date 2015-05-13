@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Walrifier</string>
-	<string name="cw_feed_url">http://codewalr.us/index.php?action=.xml;sa=recent;limit=[LIM]</string>
+	<string name="feed_url">http://codewalr.us/index.php?action=.xml;sa=recent;limit=[LIM]</string>
+	<string name="forum_url">http://quantuminfinity.space/forum</string>
+	<string name="forum_action">walrifier</string>
 	<string name="action_settings">Settings</string>
 </resources>

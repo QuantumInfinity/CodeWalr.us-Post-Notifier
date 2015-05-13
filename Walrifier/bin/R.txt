@@ -518,6 +518,7 @@ int id wrap_content 0x7f0a0009
 int integer abc_config_activityDefaultDur 0x7f090001
 int integer abc_config_activityShortDur 0x7f090000
 int integer abc_max_action_buttons 0x7f090002
+int integer max_feed_length 0x7f090003
 int layout abc_action_bar_title_item 0x7f030000
 int layout abc_action_bar_up_container 0x7f030001
 int layout abc_action_bar_view_list_nav_layout 0x7f030002
@@ -567,9 +568,11 @@ int string abc_searchview_description_voice 0x7f0b000c
 int string abc_shareactionprovider_share_with 0x7f0b0010
 int string abc_shareactionprovider_share_with_application 0x7f0b000f
 int string abc_toolbar_collapse_description 0x7f0b0004
-int string action_settings 0x7f0b0013
+int string action_settings 0x7f0b0015
 int string app_name 0x7f0b0011
-int string cw_feed_url 0x7f0b0012
+int string feed_url 0x7f0b0012
+int string forum_action 0x7f0b0014
+int string forum_url 0x7f0b0013
 int style AlertDialog_AppCompat 0x7f070043
 int style AlertDialog_AppCompat_Light 0x7f070044
 int style Animation_AppCompat_Dialog 0x7f070049

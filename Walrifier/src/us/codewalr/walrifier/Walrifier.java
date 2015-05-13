@@ -3,7 +3,7 @@ package us.codewalr.walrifier;
 import java.util.ArrayList;
 
 import us.codewalr.walrifier.Post.PostType;
-import us.codewalr.walrifier.feed.RequestFeed;
+import us.codewalr.walrifier.feed.Feed;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ public class Walrifier extends Activity
 {
 	static Walrifier instance;
 	
-	private RequestFeed feed;
+	private Feed feed;
 	private RecyclerView recycler;
 	private WalrusAdapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
@@ -35,7 +35,7 @@ public class Walrifier extends Activity
 		adapter = new WalrusAdapter(new ArrayList<Post>());
 		recycler.setAdapter(adapter);
 		
-		feed = new RequestFeed();
+		feed = new Feed(0);
 		
 		updateFeed();
 	}
@@ -48,7 +48,7 @@ public class Walrifier extends Activity
 	
 	public void updateFeed()
 	{
-		feed.execute(10);
+		feed.execute();
 	}
 	
 	public static Walrifier getInstance()
