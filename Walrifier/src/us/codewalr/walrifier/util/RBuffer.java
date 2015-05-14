@@ -1,4 +1,4 @@
-package us.codewalr.walrifier;
+package us.codewalr.walrifier.util;
 
 import java.util.ArrayList;
 

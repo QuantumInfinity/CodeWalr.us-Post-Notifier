@@ -11,8 +11,8 @@ import java.util.regex.Pattern;
 
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
-import us.codewalr.walrifier.RBuffer;
 import us.codewalr.walrifier.Walrifier;
+import us.codewalr.walrifier.util.RBuffer;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -97,5 +97,10 @@ public class Feed extends AsyncTask<IFeed, Void, RBuffer<Post>>
 			}
 		}
 		return posts;
+	}
+	
+	public ArrayList<Post> getPosts()
+	{
+		return lastPosts.getList();
 	}
 }
