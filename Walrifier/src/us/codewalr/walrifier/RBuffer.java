@@ -63,7 +63,8 @@ public class RBuffer<T>
 	{
 		ArrayList<T> list = new ArrayList<T>();
 		for (int i=0; i<size(); i++)
-			list.add(get(i));
+			if (get(i) != null)
+				list.add(get(i));
 		return list;
 	}
 }
