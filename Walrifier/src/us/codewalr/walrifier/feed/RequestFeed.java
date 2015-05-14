@@ -1,23 +1,6 @@
 package us.codewalr.walrifier.feed;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import us.codewalr.walrifier.Post;
-import us.codewalr.walrifier.Post.PostType;
-import us.codewalr.walrifier.R;
-import us.codewalr.walrifier.Walrifier;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.util.Xml;
-
+/*
 @Deprecated
 public class RequestFeed extends AsyncTask<Integer, Void, ArrayList<Post>>
 {
@@ -168,3 +151,4 @@ public class RequestFeed extends AsyncTask<Integer, Void, ArrayList<Post>>
 		return data.trim();
 	}
 }
+*/

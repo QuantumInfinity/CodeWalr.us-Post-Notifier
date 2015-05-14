@@ -2,8 +2,8 @@ package us.codewalr.walrifier;
 
 import java.util.ArrayList;
 
-import us.codewalr.walrifier.Post.PostType;
 import us.codewalr.walrifier.feed.Feed;
+import us.codewalr.walrifier.feed.IFeed;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -48,7 +48,14 @@ public class Walrifier extends Activity
 	
 	public void updateFeed()
 	{
-		feed.execute();
+		feed.execute(new IFeed()
+		{
+			@Override
+			public void onFeedLoaded(ArrayList<Post> posts, boolean hasNewPosts, boolean failed)
+			{
+				refreshRecycler(posts);
+			}
+		});
 	}
 	
 	public static Walrifier getInstance()
@@ -59,14 +66,5 @@ public class Walrifier extends Activity
 	public static Context getContext()
 	{
 		return instance;
-	}
-	
-	public static ArrayList<Post> getTempPostList()
-	{
-		ArrayList<Post> posts = new ArrayList<Post>();
-		for (int i=0; i<10; i++)
-			posts.add(new Post("Test post " + i, "Test_User_"+i, "Today at 66:69", "This is test text #"+i, Math.random() > 0.5 ? PostType.POST : PostType.TOPIC));
-		
-		return posts;
 	}
 }
