@@ -53,7 +53,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 	protected void onPostExecute(ArrayList<Post> result)
 	{
 		super.onPostExecute(result);
-		onFinished.onFeedLoaded(result, result.size() == 0, result == null);
+		onFinished.onFeedLoaded(Walrifier.getFeed().push(result), result.size() == 0, result == null);
 	}
 	
 	public ArrayList<Post> parse(String str)
@@ -62,7 +62,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 		if (!str.equals(""))
 		{
 			ArrayList<String> rawPosts = splitPosts(str);
-			for (int i = rawPosts.size()-1; i >= 0; i--)
+			for (int i = 0; i < rawPosts.size(); i++)
 				ret.add(parseRawPost(rawPosts.get(i)));
 		}
 		return ret;

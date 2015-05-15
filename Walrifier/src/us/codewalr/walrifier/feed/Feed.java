@@ -12,7 +12,7 @@ public class Feed
 	RBuffer<Post> lastPosts;
 	boolean hasChanged;
 	int lastID;
-	IFeed[] params;
+	IFeed onLoaded;
 	
 	public Feed(int lastID)
 	{
@@ -25,6 +25,13 @@ public class Feed
 	public void load(IFeed onFinished)
 	{
 		new FeedLoader(onFinished, lastID).execute();
+	}
+	
+	public ArrayList<Post> push(ArrayList<Post> newPosts)
+	{
+		for (int i = newPosts.size()-1; i >= 0; i--)
+			lastPosts.push(newPosts.get(i));
+		return lastPosts.getList();
 	}
 	
 	public ArrayList<Post> getPosts()
