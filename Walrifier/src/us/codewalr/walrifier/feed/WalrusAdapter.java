@@ -1,7 +1,11 @@
-package us.codewalr.walrifier;
+package us.codewalr.walrifier.feed;
 
 import java.util.ArrayList;
 
+import us.codewalr.walrifier.Post;
+import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.R.id;
+import us.codewalr.walrifier.R.layout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;

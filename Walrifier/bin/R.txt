@@ -367,6 +367,7 @@ int dimen dialog_fixed_width_major 0x7f06000f
 int dimen dialog_fixed_width_minor 0x7f060010
 int dimen disabled_alpha_material_dark 0x7f060004
 int dimen disabled_alpha_material_light 0x7f060003
+int dimen loading_bar_height 0x7f060047
 int drawable abc_ab_share_pack_mtrl_alpha 0x7f020000
 int drawable abc_btn_borderless_material 0x7f020001
 int drawable abc_btn_check_material 0x7f020002
@@ -442,7 +443,7 @@ int id action_menu_presenter 0x7f0a0006
 int id action_mode_bar 0x7f0a003d
 int id action_mode_bar_stub 0x7f0a003c
 int id action_mode_close_button 0x7f0a0025
-int id action_settings 0x7f0a0055
+int id action_settings 0x7f0a0056
 int id activity_chooser_view_content 0x7f0a0026
 int id alertTitle 0x7f0a0030
 int id always 0x7f0a0019
@@ -470,6 +471,7 @@ int id ifRoom 0x7f0a001b
 int id image 0x7f0a0028
 int id listMode 0x7f0a000a
 int id list_item 0x7f0a002a
+int id loading 0x7f0a0054
 int id middle 0x7f0a0022
 int id multiply 0x7f0a0014
 int id never 0x7f0a001c
@@ -480,7 +482,7 @@ int id poster 0x7f0a0053
 int id progress_circular 0x7f0a0007
 int id progress_horizontal 0x7f0a0008
 int id radio 0x7f0a003a
-int id recycler 0x7f0a0054
+int id recycler 0x7f0a0055
 int id screen 0x7f0a0015
 int id scrollView 0x7f0a0032
 int id search_badge 0x7f0a0044
@@ -573,6 +575,7 @@ int string app_name 0x7f0b0011
 int string feed_url 0x7f0b0012
 int string forum_action 0x7f0b0014
 int string forum_url 0x7f0b0013
+int string loading 0x7f0b0016
 int style AlertDialog_AppCompat 0x7f070043
 int style AlertDialog_AppCompat_Light 0x7f070044
 int style Animation_AppCompat_Dialog 0x7f070049
@@ -862,12 +865,14 @@ int style Widget_AppCompat_TextView_SpinnerItem 0x7f070042
 int style Widget_AppCompat_Toolbar 0x7f070045
 int style Widget_AppCompat_Toolbar_Button_Navigation 0x7f070046
 int style background 0x7f070120
-int style content 0x7f070125
-int style poster 0x7f070126
-int style time 0x7f070124
-int style title 0x7f070123
-int style titlebar 0x7f070122
-int style walrifiercard 0x7f070121
+int style content 0x7f070127
+int style loading 0x7f070121
+int style poster 0x7f070128
+int style recycler 0x7f070122
+int style time 0x7f070126
+int style title 0x7f070125
+int style titlebar 0x7f070124
+int style walrifiercard 0x7f070123
 int[] styleable ActionBar { 0x7f01000b, 0x7f01000c, 0x7f01003c, 0x7f010076, 0x7f010077, 0x7f010078, 0x7f010079, 0x7f01007a, 0x7f01007b, 0x7f01007c, 0x7f01007d, 0x7f01007e, 0x7f01007f, 0x7f010080, 0x7f010081, 0x7f010082, 0x7f010083, 0x7f010084, 0x7f010085, 0x7f010086, 0x7f010087, 0x7f010088, 0x7f010089, 0x7f01008a, 0x7f01008b, 0x7f01008c, 0x7f01008d }
 int styleable ActionBar_background 11
 int styleable ActionBar_backgroundSplit 13

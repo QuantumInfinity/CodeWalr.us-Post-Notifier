@@ -5,10 +5,22 @@
     <style name="AppTheme" parent="AppBaseTheme">
     </style>
     
+    <!-- main layout -->
+    
     <style name="background">
 		<item name="android:background">@drawable/bg_repeat</item>
     </style>
-
+    
+	<style name="loading">
+		<item name="android:layout_margin">4dp</item>
+    </style>
+	
+		<style name="recycler">
+		<item name="android:layout_marginTop">4dp</item>
+    </style>
+	
+	<!-- card -->
+	
     <style name="walrifiercard">
 		<item name="android:layout_margin">4dp</item>
 	</style>

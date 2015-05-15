@@ -1,9 +1,10 @@
-package us.codewalr.walrifier;
+package us.codewalr.walrifier.feed;
 
 import java.util.ArrayList;
 
-import us.codewalr.walrifier.feed.Feed;
-import us.codewalr.walrifier.feed.IFeed;
+import us.codewalr.walrifier.Post;
+import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.Walrifier;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ public class FeedView
 	private WalrusAdapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
 	private IFeed onLoad;
+	private FeedLoadingView loadingAnim;
 	
 	public FeedView()
 	{
@@ -25,6 +27,7 @@ public class FeedView
 			{
 				adapter.setPosts(posts);
 				adapter.notifyDataSetChanged();
+				loadingAnim.hide();
 			}
 		};
 	}
@@ -41,10 +44,13 @@ public class FeedView
 
 		adapter = new WalrusAdapter(new ArrayList<Post>());
 		recycler.setAdapter(adapter);
+		
+		loadingAnim = (FeedLoadingView) Walrifier.getInstance().findViewById(R.id.loading);
 	}
 	
 	public void updateFeed(Feed f)
 	{
+		loadingAnim.show();
 		f.execute(onLoad);
 	}
 }

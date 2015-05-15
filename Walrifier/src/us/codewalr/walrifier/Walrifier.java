@@ -1,9 +1,11 @@
 package us.codewalr.walrifier;
 
 import us.codewalr.walrifier.feed.Feed;
+import us.codewalr.walrifier.feed.FeedView;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 public class Walrifier extends Activity
 {
@@ -11,6 +13,7 @@ public class Walrifier extends Activity
 	
 	private Feed feed;
 	private FeedView feedView;
+	private DisplayMetrics metrics;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -18,11 +21,12 @@ public class Walrifier extends Activity
 		super.onCreate(savedInstanceState);
 		instance = this;
 		
-		feedView = new FeedView();
-		feedView.setView();
+		metrics = new DisplayMetrics();         
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
 		feed = new Feed(0);
-		
+		feedView = new FeedView();
+		feedView.setView();
 		feedView.updateFeed(feed);
 	}
 	
@@ -34,5 +38,15 @@ public class Walrifier extends Activity
 	public static Context getContext()
 	{
 		return instance;
+	}
+	
+	public static DisplayMetrics getMetrics()
+	{
+		return getInstance().metrics;
+	}
+	
+	public static int getDP(int pixels)
+	{
+		return (pixels * getMetrics().densityDpi) / DisplayMetrics.DENSITY_DEFAULT;
 	}
 }
