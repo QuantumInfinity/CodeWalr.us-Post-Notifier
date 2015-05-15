@@ -27,13 +27,19 @@ public class Walrifier extends Activity
 		feed = new Feed(0);
 		feedView = new FeedView();
 		feedView.setView();
-		feedView.updateFeed(feed);
+		feedView.updateFeed();
 	}
-	
+
 	public static Walrifier getInstance()
 	{
 		return instance;
 	}
+	
+	public static Feed getFeed()
+	{
+		return getInstance().feed;
+	}
+	
 	
 	public static Context getContext()
 	{

@@ -7,11 +7,10 @@ import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 public class FeedView
-{
-	public static final int view = R.layout.walrifierlayout;
-	
+{	
 	private RecyclerView recycler;
 	private WalrusAdapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
@@ -28,14 +27,16 @@ public class FeedView
 				adapter.setPosts(posts);
 				adapter.notifyDataSetChanged();
 				loadingAnim.hide();
+				if (failed)
+					Toast.makeText(Walrifier.getContext(), "Failed to load feed", Toast.LENGTH_LONG).show();
 			}
 		};
 	}
 	
 	public void setView()
 	{
-		Walrifier.getInstance().setContentView(view);
-		
+		Walrifier.getInstance().setContentView(R.layout.walrifierlayout);
+
 		recycler = (RecyclerView) Walrifier.getInstance().findViewById(R.id.recycler);
 		recycler.setHasFixedSize(true);
 
@@ -48,9 +49,9 @@ public class FeedView
 		loadingAnim = (FeedLoadingView) Walrifier.getInstance().findViewById(R.id.loading);
 	}
 	
-	public void updateFeed(Feed f)
+	public void updateFeed()
 	{
 		loadingAnim.show();
-		f.execute(onLoad);
+		Walrifier.getFeed().load(onLoad);
 	}
 }
