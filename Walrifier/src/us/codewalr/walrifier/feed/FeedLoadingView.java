@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
@@ -25,7 +24,7 @@ public class FeedLoadingView extends View
 	private boolean drawing = false;
 	private Paint paint;
 	private int frame = 0;
-	private int[] colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE};
+	private int[] colors = {0xFFF44336, 0xFFFFEB3B, 0xFF8BC34A, 0xFF2196F3};
 	private AnimationQueue animQueue;
 	private Rect walriiOrig, walriiScaled;
 	private Bitmap walrii_0, walrii_1;
@@ -64,6 +63,8 @@ public class FeedLoadingView extends View
 		walriiScaled = new Rect(0, 0, Walrifier.getPixels(walriiSizeDP), Walrifier.getPixels(walriiSizeDP));
 		
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		paint.setDither(false);
+		paint.setFilterBitmap(false);
 	}
 	
 	@Override
