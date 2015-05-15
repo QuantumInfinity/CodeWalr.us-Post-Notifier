@@ -31,7 +31,7 @@ public class FeedView implements OnTouchListener
 			{
 				adapter.setPosts(posts);
 				adapter.notifyDataSetChanged();
-				loadingAnim.hide();
+				//loadingAnim.hide();
 				if (failed)
 					Toast.makeText(Walrifier.getContext(), "Failed to load feed", Toast.LENGTH_SHORT).show();
 			}

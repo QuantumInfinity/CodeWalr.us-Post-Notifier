@@ -1,11 +1,15 @@
 package us.codewalr.walrifier.feed;
 
 import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.Walrifier;
 import us.codewalr.walrifier.util.AnimationQueue;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,14 +19,16 @@ import android.widget.RelativeLayout.LayoutParams;
 
 public class FeedLoadingView extends View
 {
-	Animation showAnim, hideAnim, currAnim;
-	private final int height;
+	Animation showAnim, hideAnim;
+	private final int height, walriiSizeDP = 40;
 	private final float speed = 2f;
 	private boolean drawing = false;
 	private Paint paint;
 	private int frame = 0;
 	private int[] colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE};
-	AnimationQueue animQueue;
+	private AnimationQueue animQueue;
+	private Rect walriiOrig, walriiScaled;
+	private Bitmap walrii_0, walrii_1;
 	
 	public FeedLoadingView(Context context, AttributeSet attrs)
 	{
@@ -51,6 +57,12 @@ public class FeedLoadingView extends View
 		
 		animQueue = new AnimationQueue(this);
 		
+		walrii_0 = BitmapFactory.decodeResource(Walrifier.getContext().getResources(), R.drawable.walrii_0);
+		walrii_1 = BitmapFactory.decodeResource(Walrifier.getContext().getResources(), R.drawable.walrii_1);
+		
+		walriiOrig = new Rect(0, 0, walrii_0.getWidth(), walrii_0.getHeight());
+		walriiScaled = new Rect(0, 0, Walrifier.getPixels(walriiSizeDP), Walrifier.getPixels(walriiSizeDP));
+		
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	}
 	
@@ -68,7 +80,10 @@ public class FeedLoadingView extends View
 			paint.setColor(colors[mod(i -  (int) ((frame*speed)/fl),colors.length)]);
 			canvas.drawCircle(getWidth()/2, getHeight()/2, smooth((((frame*speed) % fl) + n*r)/r, 3)*r, paint);
 		}
-
+		
+		canvas.translate(getWidth()/2 - walriiScaled.right/2, getHeight()/2 - walriiScaled.bottom/2);
+		canvas.drawBitmap((int) ((System.currentTimeMillis() % 666) / 333) == 0 ? walrii_0 : walrii_1, walriiOrig, walriiScaled, paint);
+		
 		if (drawing)
 			invalidate();
 	}
