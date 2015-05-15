@@ -17,6 +17,7 @@ public class FeedLoadingView extends View
 {
 	Animation showAnim, hideAnim, currAnim;
 	private final int height;
+	private final float speed = 2f;
 	private boolean drawing = false;
 	private Paint paint;
 	private int frame = 0;
@@ -64,8 +65,8 @@ public class FeedLoadingView extends View
 		for (int i=colors.length-1; i>=0; i--)
 		{
 			float n = i/(float) colors.length;
-			paint.setColor(colors[mod(i -  (int) (frame/fl),colors.length)]);
-			canvas.drawCircle(getWidth()/2, getHeight()/2, smooth(((frame % fl) + n*r)/r, 3)*r, paint);
+			paint.setColor(colors[mod(i -  (int) ((frame*speed)/fl),colors.length)]);
+			canvas.drawCircle(getWidth()/2, getHeight()/2, smooth((((frame*speed) % fl) + n*r)/r, 3)*r, paint);
 		}
 
 		if (drawing)
