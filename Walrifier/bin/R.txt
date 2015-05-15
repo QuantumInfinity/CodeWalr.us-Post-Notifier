@@ -574,6 +574,7 @@ int string abc_shareactionprovider_share_with_application 0x7f0b000f
 int string abc_toolbar_collapse_description 0x7f0b0004
 int string action_settings 0x7f0b0015
 int string app_name 0x7f0b0011
+int string feed_load_failed 0x7f0b0017
 int string feed_url 0x7f0b0012
 int string forum_action 0x7f0b0014
 int string forum_url 0x7f0b0013

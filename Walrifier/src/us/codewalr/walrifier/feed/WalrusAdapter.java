@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,8 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 		{
 			title.setText(p.subject);
 			time.setText(p.getTime());
-			content.setText(p.body);
+			content.setText(p.getContent());
+			content.setMovementMethod(LinkMovementMethod.getInstance());
 			poster.setText(p.getPoster());
 		}
 	}

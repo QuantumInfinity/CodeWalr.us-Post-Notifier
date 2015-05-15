@@ -40,6 +40,8 @@ public class Feed
 		if (newPosts != null)
 			for (int i = newPosts.size()-1; i >= 0; i--)
 				lastPosts.push(newPosts.get(i));
+		if (lastPosts.get(0) != null)
+			lastID = lastPosts.get(0).postID;
 		return lastPosts.getList();
 	}
 	

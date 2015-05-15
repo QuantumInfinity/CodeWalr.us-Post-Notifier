@@ -7,12 +7,15 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import android.text.Spanned;
+
 public class Post
 {
 	public String subject, body, user;
 	public PostType type;
 	public int postID, userID;
 	public Date time;
+	public Spanned content = null;
 	
 	public Post(int id_msg, long poster_time, String poster_name, int id_member, String subject, String body)
 	{
@@ -47,6 +50,13 @@ public class Post
 	    DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.ENGLISH);
 	    df.setTimeZone(TimeZone.getDefault());
 	    return df.format(time) + " " + tf.format(time);
+	}
+	
+	public Spanned getContent()
+	{
+		if (content == null)
+			content = Walrifier.parseBB(body);
+		return content;
 	}
 	
 	public static enum PostType

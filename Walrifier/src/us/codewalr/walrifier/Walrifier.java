@@ -5,6 +5,7 @@ import us.codewalr.walrifier.feed.FeedView;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Spanned;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -16,6 +17,7 @@ public class Walrifier extends Activity
 	private Feed feed;
 	private FeedView feedView;
 	private DisplayMetrics metrics;
+	private BBParser bbParser;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +32,8 @@ public class Walrifier extends Activity
 		feedView = new FeedView();
 		feedView.setView();
 		feedView.updateFeed();
+		
+		bbParser = new BBParser();
 	}
 
 	public static Walrifier getInstance()
@@ -41,7 +45,6 @@ public class Walrifier extends Activity
 	{
 		return getInstance().feed;
 	}
-	
 	
 	public static Context getContext()
 	{
@@ -66,5 +69,10 @@ public class Walrifier extends Activity
 	public static String tag()
 	{
 		return TAG;
+	}
+	
+	public static Spanned parseBB(String text)
+	{
+		return getInstance().bbParser.parse(text);
 	}
 }
