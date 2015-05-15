@@ -6,10 +6,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 public class Walrifier extends Activity
 {
 	static Walrifier instance;
+	static final String TAG = "Walrifier";
 	
 	private Feed feed;
 	private FeedView feedView;
@@ -54,5 +56,15 @@ public class Walrifier extends Activity
 	public static int getDP(int pixels)
 	{
 		return (pixels * getMetrics().densityDpi) / DisplayMetrics.DENSITY_DEFAULT;
+	}
+	
+	public static int getPixels(float dp)
+	{
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getMetrics());
+	}
+	
+	public static String tag()
+	{
+		return TAG;
 	}
 }

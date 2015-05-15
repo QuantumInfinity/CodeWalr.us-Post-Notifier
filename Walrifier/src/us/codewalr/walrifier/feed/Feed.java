@@ -2,6 +2,7 @@ package us.codewalr.walrifier.feed;
 
 import java.util.ArrayList;
 
+import android.os.AsyncTask.Status;
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
@@ -13,6 +14,7 @@ public class Feed
 	boolean hasChanged;
 	int lastID;
 	IFeed onLoaded;
+	FeedLoader currentTask;
 	
 	public Feed(int lastID)
 	{
@@ -22,15 +24,22 @@ public class Feed
 		hasChanged = false;
 	}
 	
-	public void load(IFeed onFinished)
+	public boolean load(IFeed onFinished)
 	{
-		new FeedLoader(onFinished, lastID).execute();
+		if (currentTask == null || currentTask.getStatus() != Status.RUNNING)
+		{
+			currentTask = new FeedLoader(onFinished, lastID);
+			currentTask.execute();
+			return true;
+		}
+		return false;
 	}
 	
 	public ArrayList<Post> push(ArrayList<Post> newPosts)
 	{
-		for (int i = newPosts.size()-1; i >= 0; i--)
-			lastPosts.push(newPosts.get(i));
+		if (newPosts != null)
+			for (int i = newPosts.size()-1; i >= 0; i--)
+				lastPosts.push(newPosts.get(i));
 		return lastPosts.getList();
 	}
 	

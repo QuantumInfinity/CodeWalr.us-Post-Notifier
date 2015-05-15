@@ -1,6 +1,7 @@
 package us.codewalr.walrifier.feed;
 
 import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.util.AnimationQueue;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -14,12 +15,13 @@ import android.widget.RelativeLayout.LayoutParams;
 
 public class FeedLoadingView extends View
 {
-	Animation showAnim, hideAnim;
+	Animation showAnim, hideAnim, currAnim;
 	private final int height;
 	private boolean drawing = false;
 	private Paint paint;
 	private int frame = 0;
 	private int[] colors = {Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE};
+	AnimationQueue animQueue;
 	
 	public FeedLoadingView(Context context, AttributeSet attrs)
 	{
@@ -46,6 +48,8 @@ public class FeedLoadingView extends View
 		};
 		hideAnim.setDuration(500);
 		
+		animQueue = new AnimationQueue(this);
+		
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	}
 	
@@ -63,7 +67,7 @@ public class FeedLoadingView extends View
 			paint.setColor(colors[mod(i -  (int) (frame/fl),colors.length)]);
 			canvas.drawCircle(getWidth()/2, getHeight()/2, smooth(((frame % fl) + n*r)/r, 3)*r, paint);
 		}
-		
+
 		if (drawing)
 			invalidate();
 	}
@@ -94,13 +98,13 @@ public class FeedLoadingView extends View
 	
 	public void show()
 	{
-		startAnimation(showAnim);
+		animQueue.add(showAnim);
 		drawing = true;
 	}
 	
 	public void hide()
 	{
-		startAnimation(hideAnim);
+		animQueue.add(hideAnim);
 		drawing = false;
 	}
 }

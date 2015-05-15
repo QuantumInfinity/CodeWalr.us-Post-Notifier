@@ -13,7 +13,6 @@ import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 {
@@ -41,7 +40,6 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 			return parse(total.toString());
 		} catch (IOException e)
 		{
-			Log.w("Walrifier", e.getCause());
 			return null;
 		}finally
 		{
@@ -53,7 +51,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 	protected void onPostExecute(ArrayList<Post> result)
 	{
 		super.onPostExecute(result);
-		onFinished.onFeedLoaded(Walrifier.getFeed().push(result), result.size() == 0, result == null);
+		onFinished.onFeedLoaded(Walrifier.getFeed().push(result), result == null || result.size() == 0, result == null);
 	}
 	
 	public ArrayList<Post> parse(String str)
