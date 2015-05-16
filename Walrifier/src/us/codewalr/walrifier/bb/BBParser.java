@@ -1,27 +1,24 @@
-package us.codewalr.walrifier;
+package us.codewalr.walrifier.bb;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.xml.sax.XMLReader;
-
+import us.codewalr.walrifier.Walrifier;
 import android.graphics.drawable.Drawable;
-import android.text.Editable;
 import android.text.Html;
 import android.text.Html.ImageGetter;
-import android.text.Html.TagHandler;
 import android.text.Spanned;
 
 public class BBParser
 {
 	private Map<String, String> bbMap;
 	ImageGetter ig;
-	TagHandler handler;
 	
 	public BBParser()
 	{
 		bbMap = new HashMap<String , String>();
-
+		ig = new BBImageGetter();
+			
 		bbMap.put("(\r\n|\r|\n|\n\r)", "<br/>");
 		bbMap.put("\\[tt\\](.+?)\\[/tt\\]", "<tt>$1</tt>");
 		bbMap.put("\\[s\\](.+?)\\[/s\\]", "<s>$1</s>");
@@ -45,13 +42,13 @@ public class BBParser
 		bbMap.put("\\[align=(.+?)\\](.+?)\\[/align\\]", "<div align='$1'>$2</div>");
 		bbMap.put("\\[color=(.+?)\\](.+?)\\[/color\\]", "<font color='$1'>$2</font>");
 		bbMap.put("\\[size=(.+?)\\](.+?)\\[/size\\]", "<font size='$1'>$2</font>");
-		bbMap.put("\\[img\\](.+?)\\[/img\\]", "<img src='$1' />");
-		bbMap.put("\\[img=(.+?),(.+?)\\](.+?)\\[/img\\]", "<img width='$1' height='$2' src='$3' />");
+		bbMap.put("\\[img\\](.+?)\\[/img\\]", "<img src='$1'/>");
+		bbMap.put("\\[img=(.+?),(.+?)\\](.+?)\\[/img\\]", "<img width='$1' height='$2' src='$3'/>");
 		bbMap.put("\\[email\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$1</a>");
 		bbMap.put("\\[email=(.+?)\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$2</a>");
 		bbMap.put("\\[url\\](.+?)\\[/url\\]", "<a href='$1'>$1</a>");
 		bbMap.put("\\[url=(.+?)\\](.+?)\\[/url\\]", "<a href='$1'>$2</a>");
-		//bbMap.put("\\[youtube\\](.+?)\\[/youtube\\]", "<object width='640' height='380'><param name='movie' value='http://www.youtube.com/v/$1'></param><embed src='http://www.youtube.com/v/$1' type='application/x-shockwave-flash' width='640' height='380'></embed></object>");
+		bbMap.put("\\[youtube\\](.+?)\\[/youtube\\]", "<a href='http://www.youtube.com/v/$1'>http://www.youtube.com/v/$1</a>");
 	}
 	
 	public Spanned parse(String text)
@@ -61,24 +58,15 @@ public class BBParser
 		for (Map.Entry<String, String> entry: bbMap.entrySet())
 			html = html.replaceAll(entry.getKey().toString(), entry.getValue().toString());
 
-		return Html.fromHtml(html);
+		return Html.fromHtml(html, ig, null);
     }
 	
 	public class BBImageGetter implements ImageGetter
 	{
 		@Override
-		public Drawable getDrawable(String paramString)
+		public Drawable getDrawable(String url)
 		{
-			return null;
-		}
-	}
-	
-	public class BBTagHandler implements TagHandler
-	{
-		@Override
-		public void handleTag(boolean paramBoolean, String paramString, Editable paramEditable, XMLReader paramXMLReader)
-		{
-			
+			return new URLDrawable(Walrifier.resources(), url);
 		}
 	}
 }

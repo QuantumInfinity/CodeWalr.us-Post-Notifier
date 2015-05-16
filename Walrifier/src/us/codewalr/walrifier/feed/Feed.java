@@ -19,7 +19,7 @@ public class Feed
 	public Feed(int lastID)
 	{
 		this.lastID = lastID;
-		lastPosts = new RBuffer<Post>(Walrifier.getContext().getResources().getInteger(R.integer.max_feed_length));
+		lastPosts = new RBuffer<Post>(Walrifier.resources().getInteger(R.integer.max_feed_length));
 		lastPosts.fill(null);
 		hasChanged = false;
 	}

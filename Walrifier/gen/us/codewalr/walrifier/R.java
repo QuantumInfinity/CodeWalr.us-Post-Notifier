@@ -2169,6 +2169,7 @@ containing a value of this type.
          */
         public static final int abc_max_action_buttons=0x7f090002;
         public static final int max_feed_length=0x7f090003;
+        public static final int swipe_refresh_delta=0x7f090004;
     }
     public static final class layout {
         public static final int abc_action_bar_title_item=0x7f030000;

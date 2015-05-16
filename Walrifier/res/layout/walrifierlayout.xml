@@ -10,7 +10,7 @@
 	style="@style/background"
 	tools:context=".Walrifier">
     
-    <us.codewalr.walrifier.feed.FeedLoadingView
+    <us.codewalr.walrifier.feed.FeedLoadingBar
         android:id="@+id/loading"
         style="@style/loading"
         android:layout_width="match_parent"

@@ -18,9 +18,10 @@ public class FeedView implements OnTouchListener
 	private WalrusAdapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
 	private IFeed onLoad;
-	private FeedLoadingView loadingAnim;
+	private FeedLoadingBar loadingAnim;
 	private float startY = 0;
 	private boolean loaded = false;
+	private int activationDelta;
 	
 	public FeedView()
 	{
@@ -36,6 +37,8 @@ public class FeedView implements OnTouchListener
 					Toast.makeText(Walrifier.getContext(), Walrifier.getContext().getString(R.string.feed_load_failed), Toast.LENGTH_SHORT).show();
 			}
 		};
+		
+		activationDelta = Walrifier.getPixels(Walrifier.resources().getInteger(R.integer.swipe_refresh_delta));
 	}
 	
 	public void setView()
@@ -52,7 +55,7 @@ public class FeedView implements OnTouchListener
 		adapter = new WalrusAdapter(new ArrayList<Post>());
 		recycler.setAdapter(adapter);
 		
-		loadingAnim = (FeedLoadingView) Walrifier.getInstance().findViewById(R.id.loading);
+		loadingAnim = (FeedLoadingBar) Walrifier.getInstance().findViewById(R.id.loading);
 	}
 	
 	public boolean updateFeed()
@@ -72,7 +75,7 @@ public class FeedView implements OnTouchListener
 		
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
 			startY = event.getY();
-		else if (event.getAction() == MotionEvent.ACTION_MOVE && recycler.computeVerticalScrollOffset() == 0 && delta > Walrifier.getPixels(150) && !loaded)
+		else if (event.getAction() == MotionEvent.ACTION_MOVE && recycler.computeVerticalScrollOffset() == 0 && delta > activationDelta && !loaded)
 		{
 			updateFeed();
 			loaded = true;
