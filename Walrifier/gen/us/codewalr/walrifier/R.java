@@ -1984,6 +1984,8 @@ containing a value of this type.
         public static final int disabled_alpha_material_dark=0x7f060004;
         public static final int disabled_alpha_material_light=0x7f060003;
         public static final int loading_bar_height=0x7f060047;
+        public static final int placeholder_height=0x7f060049;
+        public static final int placeholder_width=0x7f060048;
     }
     public static final class drawable {
         public static final int abc_ab_share_pack_mtrl_alpha=0x7f020000;

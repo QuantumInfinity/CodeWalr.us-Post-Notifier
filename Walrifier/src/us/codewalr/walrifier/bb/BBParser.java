@@ -4,20 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import us.codewalr.walrifier.Walrifier;
-import android.graphics.drawable.Drawable;
 import android.text.Html;
-import android.text.Html.ImageGetter;
 import android.text.Spanned;
+import android.view.View;
 
 public class BBParser
 {
 	private Map<String, String> bbMap;
-	ImageGetter ig;
-	
+
 	public BBParser()
 	{
 		bbMap = new HashMap<String , String>();
-		ig = new BBImageGetter();
 			
 		bbMap.put("(\r\n|\r|\n|\n\r)", "<br/>");
 		bbMap.put("\\[tt\\](.+?)\\[/tt\\]", "<tt>$1</tt>");
@@ -51,22 +48,13 @@ public class BBParser
 		bbMap.put("\\[youtube\\](.+?)\\[/youtube\\]", "<a href='http://www.youtube.com/v/$1'>http://www.youtube.com/v/$1</a>");
 	}
 	
-	public Spanned parse(String text)
+	public Spanned parse(View v, String text)
 	{
 		String html = text;
 
 		for (Map.Entry<String, String> entry: bbMap.entrySet())
 			html = html.replaceAll(entry.getKey().toString(), entry.getValue().toString());
 
-		return Html.fromHtml(html, ig, null);
+		return Html.fromHtml(html, new BBImageGetter(v, Walrifier.resources()), null);
     }
-	
-	public class BBImageGetter implements ImageGetter
-	{
-		@Override
-		public Drawable getDrawable(String url)
-		{
-			return new URLDrawable(Walrifier.resources(), url);
-		}
-	}
 }

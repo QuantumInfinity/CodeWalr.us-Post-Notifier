@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import android.text.Spanned;
+import android.view.View;
 
 public class Post
 {
@@ -52,10 +53,10 @@ public class Post
 	    return df.format(time) + " " + tf.format(time);
 	}
 	
-	public Spanned getContent()
+	public Spanned getContent(View v)
 	{
 		if (content == null)
-			content = Walrifier.parseBB(body);
+			content = Walrifier.parseBB(v, body);
 		return content;
 	}
 	

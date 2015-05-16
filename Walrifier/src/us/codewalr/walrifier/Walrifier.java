@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Spanned;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.View;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -101,9 +102,9 @@ public class Walrifier extends Activity
 		return TAG;
 	}
 	
-	public static Spanned parseBB(String text)
+	public static Spanned parseBB(View v, String text)
 	{
-		return getInstance().bbParser.parse(text);
+		return getInstance().bbParser.parse(v, text);
 	}
 	
 	public static Resources resources()

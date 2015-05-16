@@ -368,6 +368,8 @@ int dimen dialog_fixed_width_minor 0x7f060010
 int dimen disabled_alpha_material_dark 0x7f060004
 int dimen disabled_alpha_material_light 0x7f060003
 int dimen loading_bar_height 0x7f060047
+int dimen placeholder_height 0x7f060049
+int dimen placeholder_width 0x7f060048
 int drawable abc_ab_share_pack_mtrl_alpha 0x7f020000
 int drawable abc_btn_borderless_material 0x7f020001
 int drawable abc_btn_check_material 0x7f020002

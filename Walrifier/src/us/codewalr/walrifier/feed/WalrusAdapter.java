@@ -61,7 +61,7 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 		{
 			title.setText(p.subject);
 			time.setText(p.getTime());
-			content.setText(p.getContent());
+			content.setText(p.getContent(content));
 			content.setMovementMethod(LinkMovementMethod.getInstance());
 			poster.setText(p.getPoster());
 		}
