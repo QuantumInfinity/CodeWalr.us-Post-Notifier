@@ -1,5 +1,6 @@
 package us.codewalr.walrifier.bb;
 
+import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
 import us.codewalr.walrifier.feed.WalrusAdapter;
 import android.content.res.Resources;
@@ -26,7 +27,7 @@ public class BBImageGetter implements ImageGetter
 	@Override
 	public Drawable getDrawable(String url)
 	{
-		URLDrawable image = new URLDrawable(Walrifier.resources());
+		URLDrawable image = new URLDrawable(res);
 		BBImageGetterTask task = new BBImageGetterTask(image);
 		task.execute(url);
 		return image;
@@ -51,9 +52,8 @@ public class BBImageGetter implements ImageGetter
 		protected void onPostExecute(BitmapDrawable result)
 		{
 			super.onPostExecute(result);
-			drawable.image = result;
-			drawable.setBounds(0, 0, result.getIntrinsicWidth(), result.getIntrinsicHeight());
-			drawable.image.setBounds(0, 0, result.getIntrinsicWidth(), result.getIntrinsicHeight());
+			int width = Walrifier.getInstance().findViewById(R.id.walrifiercard).getWidth();
+			drawable.update(result, width);
 			adapter.notifyItemChanged(post);
 		}
 	}
