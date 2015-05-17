@@ -9,13 +9,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
-
 public class Walrifier extends Activity
 {
 	static Walrifier instance;
@@ -34,31 +27,10 @@ public class Walrifier extends Activity
 		metrics = new DisplayMetrics();         
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
-		initImageLoader();
-		
 		feed = new Feed(0);
 		feedView = new FeedView();
 		feedView.setView(this);
 		feedView.updateFeed();
-	}
-
-	private static void initImageLoader()
-	{
-		DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-		{{
-			cacheOnDisk(false);
-			cacheInMemory(true);
-			imageScaleType(ImageScaleType.EXACTLY);
-			displayer(new SimpleBitmapDisplayer());
-		}}.build();
-		
-		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getContext())
-		{{
-			diskCacheSize(100 * 1024 * 1024);
-			memoryCache(new WeakMemoryCache());
-		}}.defaultDisplayImageOptions(defaultOptions).build();
-		
-		ImageLoader.getInstance().init(config);
 	}
 	
 	public static Walrifier getInstance()

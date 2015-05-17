@@ -1,33 +1,34 @@
 package us.codewalr.walrifier.bb;
 
+import java.io.InputStream;
+
 import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.feed.WalrusAdapter;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 
-public class URLDrawable extends BitmapDrawable
+import com.koushikdutta.async.future.FutureCallback;
+
+public class FutureDrawable extends BitmapDrawable implements FutureCallback<InputStream>
 {
-	BitmapDrawable image;
+	AnimationDrawable image;
+	WalrusAdapter adapter;
 	Resources res;
+	int post;
 	
-	public URLDrawable(Resources res)
+	public FutureDrawable(Resources res, WalrusAdapter adapter, int post)
 	{
-		super(res, getPlaceholder(res)); // placeholder
+		super(res, getPlaceholder(res));
 		int w = (int) res.getDimension(R.dimen.placeholder_width);
 		int h = (int) res.getDimension(R.dimen.placeholder_height);
 		setBounds(0, 0, w, h);
 		this.res = res;
-	}
-
-	@Override
-	public void draw(Canvas canvas)
-	{
-		if (image == null)
-			super.draw(canvas);
-		else
-			image.draw(canvas);
+		this.adapter = adapter;
+		this.post = post;
 	}
 	
 	private static Bitmap getPlaceholder(Resources res)
@@ -39,6 +40,15 @@ public class URLDrawable extends BitmapDrawable
 		return Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, false);
 	}
 	
+	@Override
+	public void draw(Canvas canvas)
+	{
+		if (image == null)
+			super.draw(canvas);
+		else
+			image.draw(canvas);
+	}
+	
 	private BitmapDrawable fixSize(BitmapDrawable image, int parentWidth)
 	{
 		float ratio = (float) image.getIntrinsicHeight() / (float) image.getIntrinsicWidth();
@@ -48,22 +58,24 @@ public class URLDrawable extends BitmapDrawable
 		return new BitmapDrawable(res, newImage);
 	}
 	
-	public void update(BitmapDrawable newImage, int width)
-	{
-		this.image = newImage;
-		if (image.getIntrinsicWidth() > width)
-			image = fixSize(image, width);
+	@Override
+	public void onCompleted(Exception e, InputStream result)
+	{	
+//		int width = Walrifier.getInstance().findViewById(R.id.walrifiercard).getWidth();
+		
+//		Bitmap b = BitmapFactory.decodeStream(result);
+//		b.setDensity(Bitmap.DENSITY_NONE);
+//		image = fixSize(new BitmapDrawable(res, b), width);
+		
 		updateBounds();
+		adapter.notifyItemChanged(post);
+		
+		
 	}
-	
+
 	private void updateBounds()
 	{
 		setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
 		image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
-	}
-	
-	public boolean isLoading()
-	{
-		return image == null;
 	}
 }
