@@ -4,18 +4,18 @@ import java.io.InputStream;
 
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.feed.WalrusAdapter;
+import us.codewalr.walrifier.util.ImageDrawable;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 
 import com.koushikdutta.async.future.FutureCallback;
 
 public class FutureDrawable extends BitmapDrawable implements FutureCallback<InputStream>
 {
-	AnimationDrawable image;
+	ImageDrawable image;
 	WalrusAdapter adapter;
 	Resources res;
 	int post;
@@ -61,21 +61,13 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 	@Override
 	public void onCompleted(Exception e, InputStream result)
 	{	
-//		int width = Walrifier.getInstance().findViewById(R.id.walrifiercard).getWidth();
-		
-//		Bitmap b = BitmapFactory.decodeStream(result);
-//		b.setDensity(Bitmap.DENSITY_NONE);
-//		image = fixSize(new BitmapDrawable(res, b), width);
-		
-		updateBounds();
+		image = new ImageDrawable(result);
+		updateBounds();	
 		adapter.notifyItemChanged(post);
-		
-		
 	}
 
 	private void updateBounds()
 	{
-		setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
-		image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+		setBounds(0, 0, image.getWidth(), image.getHeight());
 	}
 }

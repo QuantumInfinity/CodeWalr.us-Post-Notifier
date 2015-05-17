@@ -1,6 +1,6 @@
 package us.codewalr.walrifier.feed;
 
-import us.codewalr.walrifier.bb.URLDrawable;
+import us.codewalr.walrifier.bb.FutureDrawable;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -55,8 +55,8 @@ public class PostContentView extends TextView
 			ImageSpan[] spans = span.getSpans(0, span.length() - 1, ImageSpan.class);
 			Drawable d;
 			for (ImageSpan s : spans)
-				if ((d = s.getDrawable()) instanceof URLDrawable)
-					((URLDrawable) d).draw(canvas);
+				if ((d = s.getDrawable()) instanceof FutureDrawable)
+					((FutureDrawable) d).draw(canvas);
 		}
 	}
 	
