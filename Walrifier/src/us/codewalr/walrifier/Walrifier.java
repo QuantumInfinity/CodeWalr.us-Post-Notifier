@@ -1,16 +1,13 @@
 package us.codewalr.walrifier;
 
-import us.codewalr.walrifier.bb.BBParser;
 import us.codewalr.walrifier.feed.Feed;
 import us.codewalr.walrifier.feed.FeedView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.text.Spanned;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.View;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -27,7 +24,6 @@ public class Walrifier extends Activity
 	private Feed feed;
 	private FeedView feedView;
 	private DisplayMetrics metrics;
-	private BBParser bbParser;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -42,10 +38,8 @@ public class Walrifier extends Activity
 		
 		feed = new Feed(0);
 		feedView = new FeedView();
-		feedView.setView();
+		feedView.setView(this);
 		feedView.updateFeed();
-		
-		bbParser = new BBParser();
 	}
 
 	private static void initImageLoader()
@@ -100,11 +94,6 @@ public class Walrifier extends Activity
 	public static String tag()
 	{
 		return TAG;
-	}
-	
-	public static Spanned parseBB(View v, String text)
-	{
-		return getInstance().bbParser.parse(v, text);
 	}
 	
 	public static Resources resources()

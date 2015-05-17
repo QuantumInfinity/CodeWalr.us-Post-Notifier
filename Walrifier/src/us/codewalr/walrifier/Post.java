@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import us.codewalr.walrifier.bb.BBParser;
 import android.text.Spanned;
-import android.view.View;
 
 public class Post
 {
@@ -53,10 +53,10 @@ public class Post
 	    return df.format(time) + " " + tf.format(time);
 	}
 	
-	public Spanned getContent(View v)
+	public Spanned getContent(BBParser bbParser, int post)
 	{
 		if (content == null)
-			content = Walrifier.parseBB(v, body);
+			content = bbParser.parse(body, post);
 		return content;
 	}
 	

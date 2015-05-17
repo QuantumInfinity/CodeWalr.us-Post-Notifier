@@ -1,24 +1,26 @@
 package us.codewalr.walrifier.bb;
 
 import us.codewalr.walrifier.Walrifier;
+import us.codewalr.walrifier.feed.WalrusAdapter;
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.Html.ImageGetter;
-import android.view.View;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class BBImageGetter implements ImageGetter
 {
-	View view;
-	Resources res;
+	private WalrusAdapter adapter;
+	private Resources res;
+	private int post;
 	
-	public BBImageGetter(View v, Resources res)
+	public BBImageGetter(Resources res, WalrusAdapter adapter, int post)
 	{
-		this.view = v;
+		this.adapter = adapter;
 		this.res = res;
+		this.post = post;
 	}
 	
 	@Override
@@ -52,7 +54,7 @@ public class BBImageGetter implements ImageGetter
 			drawable.image = result;
 			drawable.setBounds(0, 0, result.getIntrinsicWidth(), result.getIntrinsicHeight());
 			drawable.image.setBounds(0, 0, result.getIntrinsicWidth(), result.getIntrinsicHeight());
-			view.invalidate();
+			adapter.notifyItemChanged(post);
 		}
 	}
 }

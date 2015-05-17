@@ -24,9 +24,6 @@ public class URLDrawable extends BitmapDrawable
 		if (image == null)
 			super.draw(canvas);
 		else
-		{
-			image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
 			image.draw(canvas);
-		}
 	}
 }

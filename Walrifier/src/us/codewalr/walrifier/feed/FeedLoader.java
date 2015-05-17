@@ -51,7 +51,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 	protected void onPostExecute(ArrayList<Post> result)
 	{
 		super.onPostExecute(result);
-		onFinished.onFeedLoaded(Walrifier.getFeed().push(result), result != null && result.size() != 0, result == null);
+		onFinished.onFeedLoaded(result, result != null && result.size() != 0, result == null);
 	}
 	
 	public ArrayList<Post> parse(String str)
