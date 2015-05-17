@@ -61,4 +61,9 @@ public class URLDrawable extends BitmapDrawable
 		setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
 		image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
 	}
+	
+	public boolean isLoading()
+	{
+		return image == null;
+	}
 }

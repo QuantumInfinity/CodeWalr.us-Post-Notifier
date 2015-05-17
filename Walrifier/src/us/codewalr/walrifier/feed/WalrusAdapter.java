@@ -50,14 +50,15 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
     
 	public class ViewHolder extends RecyclerView.ViewHolder
 	{
-		TextView title, time, content, poster;
+		TextView title, time, poster;
+		PostContentView content;
 		
 		public ViewHolder(View v)
 		{
 			super(v);
 			title = (TextView) v.findViewById(R.id.title);
 			time = (TextView) v.findViewById(R.id.time);
-			content = (TextView) v.findViewById(R.id.content);
+			content = (PostContentView) v.findViewById(R.id.content);
 			poster = (TextView) v.findViewById(R.id.poster);
 		}
 		

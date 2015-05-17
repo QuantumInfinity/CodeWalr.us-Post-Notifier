@@ -2049,9 +2049,10 @@ containing a value of this type.
         public static final int abc_textfield_search_material=0x7f02003a;
         public static final int bg_repeat=0x7f02003b;
         public static final int codewalrusbg=0x7f02003c;
-        public static final int walrii_0=0x7f02003d;
-        public static final int walrii_1=0x7f02003e;
-        public static final int walrii_launcher=0x7f02003f;
+        public static final int walrii=0x7f02003d;
+        public static final int walrii_0=0x7f02003e;
+        public static final int walrii_1=0x7f02003f;
+        public static final int walrii_launcher=0x7f020040;
     }
     public static final class id {
         public static final int action_bar=0x7f0a0040;
