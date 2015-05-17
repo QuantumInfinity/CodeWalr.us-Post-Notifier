@@ -14,7 +14,7 @@ public class URLDrawable extends BitmapDrawable
 	
 	public URLDrawable(Resources res)
 	{
-		super(res, BitmapFactory.decodeResource(res, R.drawable.walrii_0)); // placeholder
+		super(res, getPlaceholder(res)); // placeholder
 		int w = (int) res.getDimension(R.dimen.placeholder_width);
 		int h = (int) res.getDimension(R.dimen.placeholder_height);
 		setBounds(0, 0, w, h);
@@ -30,21 +30,29 @@ public class URLDrawable extends BitmapDrawable
 			image.draw(canvas);
 	}
 	
-	private void fixSize(int parentWidth)
+	private static Bitmap getPlaceholder(Resources res)
+	{
+		Bitmap image = BitmapFactory.decodeResource(res, R.drawable.walrii_0);
+		float ratio = (float) image.getHeight() / (float) image.getWidth();
+		float newWidth = Math.min(image.getWidth(), (int) res.getDimension(R.dimen.placeholder_width));
+		float newHeight = newWidth * ratio;
+		return Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, false);
+	}
+	
+	private BitmapDrawable fixSize(BitmapDrawable image, int parentWidth)
 	{
 		float ratio = (float) image.getIntrinsicHeight() / (float) image.getIntrinsicWidth();
 		float newWidth = Math.min(image.getIntrinsicWidth(), parentWidth);
 		float newHeight = newWidth * ratio;
 		Bitmap newImage = Bitmap.createScaledBitmap(image.getBitmap(), (int) newWidth, (int) newHeight, false);
-		image = new BitmapDrawable(res, newImage);
-		updateBounds();
+		return new BitmapDrawable(res, newImage);
 	}
 	
 	public void update(BitmapDrawable newImage, int width)
 	{
 		this.image = newImage;
 		if (image.getIntrinsicWidth() > width)
-			fixSize(width);
+			image = fixSize(image, width);
 		updateBounds();
 	}
 	
