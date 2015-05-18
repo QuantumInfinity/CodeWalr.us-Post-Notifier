@@ -73,5 +73,6 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 	private void updateBounds()
 	{
 		setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+		image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
 	}
 }
