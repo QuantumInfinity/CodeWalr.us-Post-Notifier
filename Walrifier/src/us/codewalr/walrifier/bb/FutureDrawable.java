@@ -3,8 +3,8 @@ package us.codewalr.walrifier.bb;
 import java.io.InputStream;
 
 import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.Walrifier;
 import us.codewalr.walrifier.feed.WalrusAdapter;
-import us.codewalr.walrifier.util.ImageDrawable;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,7 +15,7 @@ import com.koushikdutta.async.future.FutureCallback;
 
 public class FutureDrawable extends BitmapDrawable implements FutureCallback<InputStream>
 {
-	ImageDrawable image;
+	BitmapDrawable image;
 	WalrusAdapter adapter;
 	Resources res;
 	int post;
@@ -49,25 +49,30 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 			image.draw(canvas);
 	}
 	
-	private BitmapDrawable fixSize(BitmapDrawable image, int parentWidth)
+	private BitmapDrawable fixSize(Bitmap image, int parentWidth)
 	{
-		float ratio = (float) image.getIntrinsicHeight() / (float) image.getIntrinsicWidth();
-		float newWidth = Math.min(image.getIntrinsicWidth(), parentWidth);
+		float ratio = (float) image.getHeight() / (float) image.getWidth();
+		float newWidth = Math.min(image.getWidth(), parentWidth);
 		float newHeight = newWidth * ratio;
-		Bitmap newImage = Bitmap.createScaledBitmap(image.getBitmap(), (int) newWidth, (int) newHeight, false);
+		Bitmap newImage = Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, false);
 		return new BitmapDrawable(res, newImage);
 	}
 	
 	@Override
 	public void onCompleted(Exception e, InputStream result)
 	{	
-		image = new ImageDrawable(result);
-		updateBounds();	
+		int width = Walrifier.getInstance().findViewById(R.id.walrifiercard).getWidth();
+		
+		Bitmap b = BitmapFactory.decodeStream(result);
+		b.setDensity(Bitmap.DENSITY_NONE);
+		image = fixSize(b, width);
+		updateBounds();
 		adapter.notifyItemChanged(post);
 	}
 
 	private void updateBounds()
 	{
-		setBounds(0, 0, image.getWidth(), image.getHeight());
+		setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
+		image.setBounds(0, 0, image.getIntrinsicWidth(), image.getIntrinsicHeight());
 	}
 }
