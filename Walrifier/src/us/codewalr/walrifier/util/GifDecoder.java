@@ -8,7 +8,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 
-import us.codewalr.walrifier.Walrifier;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
