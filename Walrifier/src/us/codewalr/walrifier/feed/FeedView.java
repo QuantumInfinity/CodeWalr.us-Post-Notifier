@@ -8,14 +8,16 @@ import us.codewalr.walrifier.Walrifier;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 public class FeedView implements OnTouchListener
 {	
-	private RecyclerView recycler;
+	public RecyclerView recycler;
 	private WalrusAdapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
 	private IFeed onLoad;
@@ -42,6 +44,7 @@ public class FeedView implements OnTouchListener
 		activationDelta = Walrifier.getPixels(Walrifier.resources().getInteger(R.integer.swipe_refresh_delta));
 	}
 	
+	@Deprecated
 	public void setView(Activity a)
 	{
 		a.setContentView(R.layout.walrifierlayout);
@@ -57,6 +60,25 @@ public class FeedView implements OnTouchListener
 		recycler.setAdapter(adapter);
 		
 		loadingAnim = (FeedLoadingBar) a.findViewById(R.id.loading);
+	}
+	
+	public View setFragment(ViewGroup container, LayoutInflater inflater)
+	{
+		View v = inflater.inflate(R.layout.walrifierlayout, container, false);
+		
+		recycler = (RecyclerView) v.findViewById(R.id.recycler);
+		recycler.setHasFixedSize(true);
+		recycler.setOnTouchListener(this);
+		
+		layoutManager = new LinearLayoutManager(container.getContext());
+		recycler.setLayoutManager(layoutManager);
+
+		adapter = new WalrusAdapter(container.getResources(), new ArrayList<Post>());
+		recycler.setAdapter(adapter);
+		
+		loadingAnim = (FeedLoadingBar) v.findViewById(R.id.loading); 
+		
+		return v;
 	}
 	
 	public boolean updateFeed()

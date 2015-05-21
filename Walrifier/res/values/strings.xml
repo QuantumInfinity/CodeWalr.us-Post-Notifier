@@ -7,4 +7,12 @@
 	<string name="action_settings">Settings</string>
 	<string name="loading">Loading</string>
 	<string name="feed_load_failed">Error loading feed</string>
+	
+	<string-array name="drawer_options_names">
+		<item>Walrifier</item>
+	</string-array>
+	
+	<string-array name="drawer_options_classes">
+		<item>us.codewalr.walrifier.ui.FeedFragment</item>
+	</string-array>
 </resources>

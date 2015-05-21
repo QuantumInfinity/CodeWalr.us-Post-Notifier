@@ -1,5 +1,8 @@
-package us.codewalr.walrifier;
+package us.codewalr.walrifier.feed;
 
+import us.codewalr.walrifier.R;
+import us.codewalr.walrifier.Walrifier;
+import us.codewalr.walrifier.R.drawable;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

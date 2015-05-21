@@ -1,21 +1,22 @@
 package us.codewalr.walrifier;
 
 import us.codewalr.walrifier.feed.Feed;
-import us.codewalr.walrifier.feed.FeedView;
-import android.app.Activity;
+import us.codewalr.walrifier.ui.WalrifierDrawer;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-public class Walrifier extends Activity
+public class Walrifier extends FragmentActivity
 {
 	static Walrifier instance;
 	static final String TAG = "Walrifier";
 	
 	private Feed feed;
-	private FeedView feedView;
+	private WalrifierDrawer walrusDrawer;
 	private DisplayMetrics metrics;
 	
 	@Override
@@ -28,9 +29,9 @@ public class Walrifier extends Activity
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
 		feed = new Feed(0);
-		feedView = new FeedView();
-		feedView.setView(this);
-		feedView.updateFeed();
+		
+		walrusDrawer = new WalrifierDrawer();
+		walrusDrawer.setView(this);
 	}
 	
 	public static Walrifier getInstance()
@@ -70,6 +71,11 @@ public class Walrifier extends Activity
 	
 	public static Resources resources()
 	{
-		return getInstance().getResources();
+		return getContext().getResources();
+	}
+	
+	public static FragmentManager fragmentManager()
+	{
+		return getInstance().getSupportFragmentManager();
 	}
 }

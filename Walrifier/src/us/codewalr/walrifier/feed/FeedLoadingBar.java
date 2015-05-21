@@ -2,7 +2,6 @@ package us.codewalr.walrifier.feed;
 
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
-import us.codewalr.walrifier.WalriiLoadingAnimation;
 import us.codewalr.walrifier.util.AnimationQueue;
 import android.content.Context;
 import android.graphics.Canvas;

@@ -15,9 +15,19 @@
 		<item name="android:layout_margin">4dp</item>
     </style>
 	
-		<style name="recycler">
+	<style name="recycler">
 		<item name="android:layout_marginTop">4dp</item>
     </style>
+    
+	<!-- drawer layout -->
+	
+	<style name="left_drawer">
+		<item name="android:layout_gravity">start</item>
+		<item name="android:choiceMode">singleChoice</item>
+		<item name="android:divider">@color/drawer_divider</item>
+		<item name="android:dividerHeight">0dp</item>
+		<item name="android:background">@color/drawer_background</item>
+	</style>
 	
 	<!-- card -->
 	
