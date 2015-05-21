@@ -35,6 +35,7 @@ public class WalrifierDrawer implements ListView.OnItemClickListener
 		instantiateFragment(position);
 		Walrifier.fragmentManager().beginTransaction().replace(R.id.drawer_content_frame, currentFragment).commitAllowingStateLoss();
 		drawerList.setItemChecked(position, true);
+		Walrifier.setActionBarTitle(items[position]);
 		drawerLayout.closeDrawer(drawerList);
 	}
 	

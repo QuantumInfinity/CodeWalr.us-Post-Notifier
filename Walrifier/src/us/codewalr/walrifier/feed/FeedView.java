@@ -97,7 +97,11 @@ public class FeedView implements OnTouchListener
 		float delta = event.getY() - startY;
 		
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
+		{
+			if (recycler.computeVerticalScrollOffset() != 0)
+				loaded = true;
 			startY = event.getY();
+		}
 		else if (event.getAction() == MotionEvent.ACTION_MOVE && recycler.computeVerticalScrollOffset() == 0 && delta > activationDelta && !loaded)
 		{
 			updateFeed();

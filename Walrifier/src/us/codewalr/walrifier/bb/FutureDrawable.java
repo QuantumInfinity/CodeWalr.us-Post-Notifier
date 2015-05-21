@@ -23,9 +23,11 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 	public FutureDrawable(Resources res, WalrusAdapter adapter, int post)
 	{
 		super(res, getPlaceholder(res));
-		int w = (int) res.getDimension(R.dimen.placeholder_width);
-		int h = (int) res.getDimension(R.dimen.placeholder_height);
+		Bitmap image = BitmapFactory.decodeResource(res, R.drawable.omnomloading);
+		int w = (int) getPlaceholderWidth(image, res);
+		int h = (int) getPlaceholderHeight(image, res);
 		setBounds(0, 0, w, h);
+		image.recycle();
 		this.res = res;
 		this.adapter = adapter;
 		this.post = post;
@@ -33,11 +35,25 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 	
 	private static Bitmap getPlaceholder(Resources res)
 	{
-		Bitmap image = BitmapFactory.decodeResource(res, R.drawable.walrii_0);
+		Bitmap image = BitmapFactory.decodeResource(res, R.drawable.omnomloading);
 		float ratio = (float) image.getHeight() / (float) image.getWidth();
 		float newWidth = Math.min(image.getWidth(), (int) res.getDimension(R.dimen.placeholder_width));
 		float newHeight = newWidth * ratio;
-		return Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, false);
+		Bitmap imageScaled = Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, false);
+		image.recycle();
+		return imageScaled;
+	}
+	
+	private static int getPlaceholderWidth(Bitmap image, Resources res)
+	{
+		return Math.min(image.getWidth(), (int) res.getDimension(R.dimen.placeholder_width));
+	}
+	
+	private static int getPlaceholderHeight(Bitmap image, Resources res)
+	{
+		float ratio = (float) image.getHeight() / (float) image.getWidth();
+		float newWidth = Math.min(image.getWidth(), (int) res.getDimension(R.dimen.placeholder_width));
+		return (int) (newWidth * ratio);
 	}
 	
 	@Override

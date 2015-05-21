@@ -28,6 +28,9 @@ public class Walrifier extends AppCompatActivity
 		metrics = new DisplayMetrics();         
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		getSupportActionBar().setIcon(R.drawable.walrii_0);
+		
 		feed = new Feed(0);
 		
 		walrusDrawer = new WalrifierDrawer();
@@ -77,5 +80,10 @@ public class Walrifier extends AppCompatActivity
 	public static FragmentManager fragmentManager()
 	{
 		return getInstance().getSupportFragmentManager();
+	}
+	
+	public static void setActionBarTitle(String title)
+	{
+		getInstance().getSupportActionBar().setTitle(title);
 	}
 }

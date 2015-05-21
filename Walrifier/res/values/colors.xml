@@ -7,4 +7,7 @@
 	<item name="postertext" type="color">#C4C4C4</item>
 	<item name="drawer_divider" type="color">@android:color/transparent</item>
 	<item name="drawer_background" type="color">#111</item>
+	<item name="primary" type="color">#6EB489</item>
+	<item name="primary_dark" type="color">#4F7F61</item>
+	<item name="accent" type="color">@android:color/white</item>
 </resources>
