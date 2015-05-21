@@ -5,12 +5,12 @@ import us.codewalr.walrifier.ui.WalrifierDrawer;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
-public class Walrifier extends FragmentActivity
+public class Walrifier extends AppCompatActivity
 {
 	static Walrifier instance;
 	static final String TAG = "Walrifier";
