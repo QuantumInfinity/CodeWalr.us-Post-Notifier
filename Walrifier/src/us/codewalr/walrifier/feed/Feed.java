@@ -2,12 +2,11 @@ package us.codewalr.walrifier.feed;
 
 import java.util.ArrayList;
 
-import android.content.res.Resources;
-import android.os.AsyncTask.Status;
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
-import us.codewalr.walrifier.Walrifier;
 import us.codewalr.walrifier.util.RBuffer;
+import android.content.res.Resources;
+import android.os.AsyncTask.Status;
 
 public class Feed
 {
@@ -22,7 +21,7 @@ public class Feed
 	{
 		this.lastID = lastID;
 		this.res = res;
-		lastPosts = new RBuffer<Post>(Walrifier.resources().getInteger(R.integer.max_feed_length));
+		lastPosts = new RBuffer<Post>(res.getInteger(R.integer.max_feed_length));
 		lastPosts.fill(null);
 		hasChanged = false;
 	}

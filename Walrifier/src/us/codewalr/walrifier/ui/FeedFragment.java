@@ -15,7 +15,8 @@ public class FeedFragment extends Fragment
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		feedView = new FeedView();	
+
+		feedView = new FeedView(getActivity());	
 	}
 
 	@Override

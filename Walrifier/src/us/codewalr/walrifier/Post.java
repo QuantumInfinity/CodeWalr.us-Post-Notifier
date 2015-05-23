@@ -10,6 +10,7 @@ import java.util.TimeZone;
 import us.codewalr.walrifier.bb.BBParser;
 import android.content.res.Resources;
 import android.text.Spanned;
+import android.view.View;
 
 public class Post
 {
@@ -55,10 +56,10 @@ public class Post
 	    return df.format(time) + " " + tf.format(time);
 	}
 	
-	public Spanned getContent(BBParser bbParser, int post)
+	public Spanned getContent(BBParser bbParser, int post, View container)
 	{
 		if (content == null)
-			content = bbParser.parse(body, post);
+			content = bbParser.parse(body, post, container);
 		return content;
 	}
 	

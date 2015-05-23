@@ -6,9 +6,9 @@ import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,24 +27,27 @@ public class FeedView implements OnTouchListener
 	private boolean loaded = false;
 	private int activationDelta, scrollMinHeight;
 	private FeedViewTouchListener touchListener;
+	private Feed feed;
 	
-	public FeedView()
+	public FeedView(final Context ctx)
 	{
+		feed = new Feed(0, ctx.getResources());
+		
 		onLoad = new IFeed()
 		{
 			@Override
 			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed)
 			{
-				adapter.setPosts(Walrifier.getFeed().push(newPosts));
+				adapter.setPosts(feed.push(newPosts));
 				adapter.notifyDataSetChanged();
 				loadingAnim.hide();
 				if (failed)
-					Toast.makeText(Walrifier.getContext(), Walrifier.getContext().getString(R.string.feed_load_failed), Toast.LENGTH_SHORT).show();
+					Toast.makeText(ctx, ctx.getString(R.string.feed_load_failed), Toast.LENGTH_SHORT).show();
 			}
 		};
 		
-		activationDelta = Walrifier.getPixels(Walrifier.resources().getInteger(R.integer.swipe_refresh_delta));
-		scrollMinHeight = Walrifier.getPixels(Walrifier.resources().getInteger(R.integer.swipe_refresh_scroll_min_height));
+		activationDelta = Walrifier.getPixels(ctx.getResources().getDisplayMetrics(), ctx.getResources().getInteger(R.integer.swipe_refresh_delta));
+		scrollMinHeight = Walrifier.getPixels(ctx.getResources().getDisplayMetrics(), ctx.getResources().getInteger(R.integer.swipe_refresh_scroll_min_height));
 	}
 	
 	@Deprecated
@@ -59,7 +62,7 @@ public class FeedView implements OnTouchListener
 		layoutManager = new LinearLayoutManager(a);
 		recycler.setLayoutManager(layoutManager);
 
-		adapter = new WalrusAdapter(a.getResources(), new ArrayList<Post>());
+		adapter = new WalrusAdapter(a, new ArrayList<Post>());
 		recycler.setAdapter(adapter);
 		
 		loadingAnim = (FeedLoadingBar) a.findViewById(R.id.loading);
@@ -76,7 +79,7 @@ public class FeedView implements OnTouchListener
 		layoutManager = new LinearLayoutManager(container.getContext());
 		recycler.setLayoutManager(layoutManager);
 
-		adapter = new WalrusAdapter(container.getResources(), new ArrayList<Post>());
+		adapter = new WalrusAdapter(container.getContext(), new ArrayList<Post>());
 		recycler.setAdapter(adapter);
 		
 		touchListener = new FeedViewTouchListener(container.getContext());
@@ -89,7 +92,7 @@ public class FeedView implements OnTouchListener
 	
 	public boolean updateFeed()
 	{
-		boolean success = Walrifier.getFeed().load(onLoad);
+		boolean success = feed.load(onLoad);
 		if (success)
 			loadingAnim.show();
 		return success;
@@ -106,7 +109,6 @@ public class FeedView implements OnTouchListener
 			startY = event.getY();
 		else if (event.getAction() == MotionEvent.ACTION_MOVE && recycler.computeVerticalScrollOffset() < scrollMinHeight && delta > activationDelta && !loaded && startY + 1 > 0.001)
 		{
-			Log.v(Walrifier.tag(), delta + "");
 			updateFeed();
 			loaded = true;
 		}else if(event.getAction() == MotionEvent.ACTION_UP)

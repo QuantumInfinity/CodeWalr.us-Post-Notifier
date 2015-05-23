@@ -1,7 +1,6 @@
 package us.codewalr.walrifier.feed;
 
 import us.codewalr.walrifier.R;
-import us.codewalr.walrifier.Walrifier;
 import us.codewalr.walrifier.util.AnimationQueue;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -46,7 +45,7 @@ public class FeedLoadingBar extends View
 		hideAnim.setDuration(500);
 		
 		animQueue = new AnimationQueue(this);
-		anim = new WalriiLoadingAnimation(Walrifier.resources());
+		anim = new WalriiLoadingAnimation(context.getResources());
 	}
 	
 	@Override

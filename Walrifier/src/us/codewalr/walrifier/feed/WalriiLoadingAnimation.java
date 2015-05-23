@@ -21,11 +21,13 @@ public class WalriiLoadingAnimation
 	
 	public WalriiLoadingAnimation(Resources res)
 	{
+		int walrusSize = Walrifier.getPixels(res.getDisplayMetrics(), walriiSizeDP);
+		
 		walrii_0 = BitmapFactory.decodeResource(res, R.drawable.walrii_0);
 		walrii_1 = BitmapFactory.decodeResource(res, R.drawable.walrii_1);
 		
 		walriiOrig = new Rect(0, 0, walrii_0.getWidth(), walrii_0.getHeight());
-		walriiScaled = new Rect(0, 0, Walrifier.getPixels(walriiSizeDP), Walrifier.getPixels(walriiSizeDP));
+		walriiScaled = new Rect(0, 0, walrusSize, walrusSize);
 		
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		paint.setDither(false);

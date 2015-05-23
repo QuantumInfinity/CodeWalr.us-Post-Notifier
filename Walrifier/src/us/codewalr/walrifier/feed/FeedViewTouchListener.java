@@ -1,12 +1,9 @@
 package us.codewalr.walrifier.feed;
 
-import us.codewalr.walrifier.Walrifier;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.AvoidXfermode;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;

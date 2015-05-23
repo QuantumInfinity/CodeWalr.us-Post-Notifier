@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.bb.BBParser;
+import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.text.method.LinkMovementMethod;
@@ -19,11 +20,11 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 	private BBParser bbParser;
 	private Resources res;
 	
-	public WalrusAdapter(Resources res, ArrayList<Post> posts)
+	public WalrusAdapter(Context ctx, ArrayList<Post> posts)
 	{
 		this.posts = posts;
-		bbParser = new BBParser(res, this);
-		this.res = res;
+		bbParser = new BBParser(ctx, this);
+		this.res = ctx.getResources();
 	}
 	
 	public void setPosts(ArrayList<Post> posts)
@@ -59,10 +60,12 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 	{
 		TextView title, time, poster;
 		PostContentView content;
+		View v;
 		
 		public ViewHolder(View v)
 		{
 			super(v);
+			this.v = v;
 			title = (TextView) v.findViewById(R.id.title);
 			time = (TextView) v.findViewById(R.id.time);
 			content = (PostContentView) v.findViewById(R.id.content);
@@ -73,7 +76,7 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 		{
 			title.setText(p.subject);
 			time.setText(p.getTime());
-			content.setText(p.getContent(bbParser, post));
+			content.setText(p.getContent(bbParser, post, v));
 			content.setMovementMethod(LinkMovementMethod.getInstance());
 			poster.setText(p.getPoster());
 		}

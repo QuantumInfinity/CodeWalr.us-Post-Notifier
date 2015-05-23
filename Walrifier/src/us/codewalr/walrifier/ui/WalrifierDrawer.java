@@ -4,7 +4,9 @@ import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,10 +20,13 @@ public class WalrifierDrawer implements ListView.OnItemClickListener
 	private DrawerLayout drawerLayout;
 	private ListView drawerList;
 	private Fragment currentFragment;
+	private FragmentManager fm;
+	private ActionBar bar;
 	
-	public WalrifierDrawer()
+	public WalrifierDrawer(FragmentManager fm, ActionBar ab)
 	{
-		
+		this.fm = fm;
+		this.bar = ab;
 	}
 	
 	@Override
@@ -33,9 +38,9 @@ public class WalrifierDrawer implements ListView.OnItemClickListener
 	private void setFragment(int position)
 	{
 		instantiateFragment(position);
-		Walrifier.fragmentManager().beginTransaction().replace(R.id.drawer_content_frame, currentFragment).commitAllowingStateLoss();
+		fm.beginTransaction().replace(R.id.drawer_content_frame, currentFragment).commitAllowingStateLoss();
 		drawerList.setItemChecked(position, true);
-		Walrifier.setActionBarTitle(items[position]);
+		bar.setTitle(items[position]);
 		drawerLayout.closeDrawer(drawerList);
 	}
 	
@@ -45,7 +50,7 @@ public class WalrifierDrawer implements ListView.OnItemClickListener
 			currentFragment = (Fragment) Class.forName(classes[position]).newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e)
 		{
-			Log.e(Walrifier.tag(), "Error instiating class: " + classes[position]);
+			Log.e(Walrifier.TAG, "Error instiating class: " + classes[position]);
 		}
 	}
 	

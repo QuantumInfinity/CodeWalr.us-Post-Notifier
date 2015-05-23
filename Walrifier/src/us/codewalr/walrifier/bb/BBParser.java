@@ -4,20 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import us.codewalr.walrifier.feed.WalrusAdapter;
-import android.content.res.Resources;
+import android.content.Context;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.View;
 
 public class BBParser
 {
 	private Map<String, String> bbMap;
 	private WalrusAdapter adapter;
-	private Resources res;
+	private Context ctx;
 	
-	public BBParser(Resources res, WalrusAdapter adapter)
+	public BBParser(Context ctx, WalrusAdapter adapter)
 	{
 		this.adapter = adapter;
-		this.res = res;
+		this.ctx = ctx;
 		bbMap = new HashMap<String , String>();
 			
 		bbMap.put("(\r\n|\r|\n|\n\r)", "<br/>");
@@ -52,13 +53,13 @@ public class BBParser
 		bbMap.put("\\[youtube\\](.+?)\\[/youtube\\]", "<a href='http://www.youtube.com/v/$1'>http://www.youtube.com/v/$1</a>");
 	}
 	
-	public Spanned parse(String text, int post)
+	public Spanned parse(String text, int post, View container)
 	{
 		String html = text;
 
 		for (Map.Entry<String, String> entry: bbMap.entrySet())
 			html = html.replaceAll(entry.getKey().toString(), entry.getValue().toString());
 
-		return Html.fromHtml(html, new BBImageGetter(res, adapter, post), null);
+		return Html.fromHtml(html, new BBImageGetter(ctx, adapter, post, container), null);
     }
 }

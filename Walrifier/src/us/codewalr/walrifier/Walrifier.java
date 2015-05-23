@@ -1,89 +1,36 @@
 package us.codewalr.walrifier;
 
-import us.codewalr.walrifier.feed.Feed;
 import us.codewalr.walrifier.ui.WalrifierDrawer;
-import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 public class Walrifier extends AppCompatActivity
 {
-	static Walrifier instance;
-	static final String TAG = "Walrifier";
-	
-	private Feed feed;
+	public static final String TAG = "Walrifier";
+
 	private WalrifierDrawer walrusDrawer;
-	private DisplayMetrics metrics;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		instance = this;
-		
-		metrics = new DisplayMetrics();         
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setIcon(R.drawable.walrii_0);
 		
-		feed = new Feed(0, getResources());
-		
-		walrusDrawer = new WalrifierDrawer();
+		walrusDrawer = new WalrifierDrawer(getSupportFragmentManager(), getSupportActionBar());
 		walrusDrawer.setView(this);
 	}
 	
-	public static Walrifier getInstance()
+	public static int getDP(DisplayMetrics m, int pixels)
 	{
-		return instance;
+		return (pixels * m.densityDpi) / DisplayMetrics.DENSITY_DEFAULT;
 	}
 	
-	public static Feed getFeed()
+	public static int getPixels(DisplayMetrics m, float dp)
 	{
-		return getInstance().feed;
-	}
-	
-	public static Context getContext()
-	{
-		return instance;
-	}
-	
-	public static DisplayMetrics getMetrics()
-	{
-		return getInstance().metrics;
-	}
-	
-	public static int getDP(int pixels)
-	{
-		return (pixels * getMetrics().densityDpi) / DisplayMetrics.DENSITY_DEFAULT;
-	}
-	
-	public static int getPixels(float dp)
-	{
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getMetrics());
-	}
-	
-	public static String tag()
-	{
-		return TAG;
-	}
-	
-	public static Resources resources()
-	{
-		return getContext().getResources();
-	}
-	
-	public static FragmentManager fragmentManager()
-	{
-		return getInstance().getSupportFragmentManager();
-	}
-	
-	public static void setActionBarTitle(String title)
-	{
-		getInstance().getSupportActionBar().setTitle(title);
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, m);
 	}
 }
