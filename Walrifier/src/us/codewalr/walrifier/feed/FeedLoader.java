@@ -71,7 +71,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 		String[] elem = str.replaceAll("(^\\{)|(\\}$)", "").split("(?<!%):");
 		for (int i=0; i<elem.length; i++)
 			elem[i] = elem[i].replaceAll("%\\{", "\\{").replaceAll("%\\}", "}").replaceAll("%:", ":").replaceAll("%%", "%");
-		return new Post(Integer.parseInt(elem[0]), Integer.parseInt(elem[1]), elem[2], Integer.parseInt(elem[3]), elem[4], elem[5]);
+		return new Post(Integer.parseInt(elem[0]), Integer.parseInt(elem[1]), Long.parseLong(elem[2]), elem[3], Integer.parseInt(elem[4]), elem[5], elem[6]);
 	}
 	
 	public static ArrayList<String> splitPosts(String str)

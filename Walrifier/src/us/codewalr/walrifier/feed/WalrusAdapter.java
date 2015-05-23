@@ -17,6 +17,7 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 {
 	private ArrayList<Post> posts;
 	private BBParser bbParser;
+	private Resources res;
 	
 	public WalrusAdapter(Resources res, ArrayList<Post> posts)
 	{

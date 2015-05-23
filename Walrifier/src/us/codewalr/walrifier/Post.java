@@ -12,13 +12,13 @@ import android.text.Spanned;
 
 public class Post
 {
-	public String subject, body, user;
+	public String subject, body, user, link = null;
 	public PostType type;
-	public int postID, userID;
+	public int postID, userID, topicID;
 	public Date time;
 	public Spanned content = null;
 	
-	public Post(int id_msg, long poster_time, String poster_name, int id_member, String subject, String body)
+	public Post(int id_msg, int id_topic, long poster_time, String poster_name, int id_member, String subject, String body)
 	{
 		this.subject = subject;
 		this.body = body;
