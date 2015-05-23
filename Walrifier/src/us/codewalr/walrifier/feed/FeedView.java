@@ -8,6 +8,7 @@ import us.codewalr.walrifier.Walrifier;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,19 +18,20 @@ import android.widget.Toast;
 
 public class FeedView implements OnTouchListener
 {	
-	public RecyclerView recycler;
+	private RecyclerView recycler;
 	private WalrusAdapter adapter;
 	private RecyclerView.LayoutManager layoutManager;
 	private IFeed onLoad;
 	private FeedLoadingBar loadingAnim;
-	private float startY = 0;
+	private float startY = -1;
 	private boolean loaded = false;
-	private int activationDelta;
+	private int activationDelta, scrollMinHeight;
+	private FeedViewTouchListener touchListener;
 	
 	public FeedView()
 	{
 		onLoad = new IFeed()
-		{	
+		{
 			@Override
 			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed)
 			{
@@ -42,6 +44,7 @@ public class FeedView implements OnTouchListener
 		};
 		
 		activationDelta = Walrifier.getPixels(Walrifier.resources().getInteger(R.integer.swipe_refresh_delta));
+		scrollMinHeight = Walrifier.getPixels(Walrifier.resources().getInteger(R.integer.swipe_refresh_scroll_min_height));
 	}
 	
 	@Deprecated
@@ -76,6 +79,9 @@ public class FeedView implements OnTouchListener
 		adapter = new WalrusAdapter(container.getResources(), new ArrayList<Post>());
 		recycler.setAdapter(adapter);
 		
+		touchListener = new FeedViewTouchListener(container.getContext());
+		recycler.addOnItemTouchListener(touchListener);
+		
 		loadingAnim = (FeedLoadingBar) v.findViewById(R.id.loading); 
 		
 		return v;
@@ -97,17 +103,17 @@ public class FeedView implements OnTouchListener
 		float delta = event.getY() - startY;
 		
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
-		{
-			if (recycler.computeVerticalScrollOffset() != 0)
-				loaded = true;
 			startY = event.getY();
-		}
-		else if (event.getAction() == MotionEvent.ACTION_MOVE && recycler.computeVerticalScrollOffset() == 0 && delta > activationDelta && !loaded)
+		else if (event.getAction() == MotionEvent.ACTION_MOVE && recycler.computeVerticalScrollOffset() < scrollMinHeight && delta > activationDelta && !loaded && startY + 1 > 0.001)
 		{
+			Log.v(Walrifier.tag(), delta + "");
 			updateFeed();
 			loaded = true;
 		}else if(event.getAction() == MotionEvent.ACTION_UP)
+		{
 			loaded = false;
+			startY = -1;
+		}
 		
 		return false;
 	}
