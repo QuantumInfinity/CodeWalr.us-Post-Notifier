@@ -10,7 +10,7 @@ public class WalriiService extends Service{
 	public Feed feed;
 	
 	public int onStartCommand(Intent intent, int flags, int startID){
-		feed = new Feed(-1);
+		feed = new Feed(-1, getResources());
 		feed.load(new IFeed(){
 			@Override
 			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed){

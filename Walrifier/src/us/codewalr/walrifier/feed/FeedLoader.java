@@ -11,24 +11,26 @@ import java.util.regex.Pattern;
 
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
-import us.codewalr.walrifier.Walrifier;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 
 public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 {
+	Resources res;
 	IFeed onFinished;
 	int since;
 	
-	public FeedLoader(IFeed onFinished, int since)
+	public FeedLoader(Resources res, IFeed onFinished, int since)
 	{
 		this.onFinished = onFinished;
 		this.since = since;
+		this.res = res;
 	}
 	
 	@Override
 	protected ArrayList<Post> doInBackground(Void... params)
 	{
-		String url = Walrifier.getContext().getString(R.string.forum_url)+"/index.php?action="+Walrifier.getContext().getString(R.string.forum_action)+"&id="+since;
+		String url = res.getString(R.string.forum_url)+res.getString(R.string.forum_walrifier_action).replace("%ID%", since + "");
 		HttpURLConnection urlConnection = null;
 		try{
 			urlConnection = (HttpURLConnection) new URL(url).openConnection();

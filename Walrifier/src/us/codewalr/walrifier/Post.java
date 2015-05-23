@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import us.codewalr.walrifier.bb.BBParser;
+import android.content.res.Resources;
 import android.text.Spanned;
 
 public class Post
@@ -21,6 +22,7 @@ public class Post
 	public Post(int id_msg, int id_topic, long poster_time, String poster_name, int id_member, String subject, String body)
 	{
 		this.subject = subject;
+		this.topicID = id_topic;
 		this.body = body;
 		this.user = poster_name;
 		this.postID = id_msg;
@@ -58,6 +60,13 @@ public class Post
 		if (content == null)
 			content = bbParser.parse(body, post);
 		return content;
+	}
+	
+	public String getLink(Resources res)
+	{
+		if (link == null)
+			link = res.getString(R.string.forum_url)+res.getString(R.string.forum_msg_link_format).replace("%TOPIC%", topicID + "").replace("%POST%", postID + "");
+		return link;
 	}
 	
 	public static enum PostType
