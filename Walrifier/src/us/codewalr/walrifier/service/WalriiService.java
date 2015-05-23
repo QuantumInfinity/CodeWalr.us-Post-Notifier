@@ -1,10 +1,13 @@
 package us.codewalr.walrifier.service;
-import java.util.*;
-import us.codewalr.walrifier.*;
-import us.codewalr.walrifier.feed.*;
-import android.app.*;
-import android.content.*;
-import android.os.*;
+
+import java.util.ArrayList;
+
+import us.codewalr.walrifier.Post;
+import us.codewalr.walrifier.feed.Feed;
+import us.codewalr.walrifier.feed.IFeed;
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
 
 public class WalriiService extends Service{
 	public Feed feed;
