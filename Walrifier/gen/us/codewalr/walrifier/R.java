@@ -2186,7 +2186,6 @@ containing a value of this type.
         public static final int abc_max_action_buttons=0x7f090002;
         public static final int max_feed_length=0x7f090003;
         public static final int swipe_refresh_delta=0x7f090004;
-        public static final int swipe_refresh_scroll_min_height=0x7f090005;
     }
     public static final class layout {
         public static final int abc_action_bar_title_item=0x7f030000;
@@ -2288,9 +2287,9 @@ containing a value of this type.
         public static final int action_settings=0x7f0b0015;
         public static final int app_name=0x7f0b0011;
         public static final int feed_load_failed=0x7f0b0017;
-        public static final int forum_msg_link_format=0x7f0b0014;
-        public static final int forum_url=0x7f0b0012;
-        public static final int forum_walrifier_action=0x7f0b0013;
+        public static final int feed_url=0x7f0b0012;
+        public static final int forum_action=0x7f0b0014;
+        public static final int forum_url=0x7f0b0013;
         public static final int loading=0x7f0b0016;
     }
     public static final class style {

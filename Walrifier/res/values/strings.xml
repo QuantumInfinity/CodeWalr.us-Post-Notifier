@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Walrifier</string>
+	<string name="feed_url">http://codewalr.us/index.php?action=.xml;sa=recent;limit=[LIM]</string>
 	<string name="forum_url">http://quantuminfinity.space/forum</string>
-	<string name="forum_walrifier_action">/index.php?action=walrifier&amp;id=%ID%</string>
-	<string name="forum_msg_link_format" formatted="false">/index.php?topic=%TOPIC%.msg%POST%</string>
+	<string name="forum_action">walrifier</string>
 	<string name="action_settings">Settings</string>
 	<string name="loading">Loading</string>
 	<string name="feed_load_failed">Error loading feed</string>

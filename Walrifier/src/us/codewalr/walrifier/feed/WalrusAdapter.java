@@ -23,7 +23,6 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 	{
 		this.posts = posts;
 		bbParser = new BBParser(res, this);
-		this.res = res;
 	}
 	
 	public void setPosts(ArrayList<Post> posts)
@@ -49,12 +48,7 @@ public class WalrusAdapter extends RecyclerView.Adapter<WalrusAdapter.ViewHolder
 	{
     	return posts.size();
     }
-	
-	public String getPostLink(int position)
-	{
-		return posts.get(position).getLink(res);
-	}
-	
+    
 	public class ViewHolder extends RecyclerView.ViewHolder
 	{
 		TextView title, time, poster;

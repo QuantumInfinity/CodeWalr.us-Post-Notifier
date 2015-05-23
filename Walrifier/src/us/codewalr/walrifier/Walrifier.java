@@ -31,7 +31,7 @@ public class Walrifier extends AppCompatActivity
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
 		getSupportActionBar().setIcon(R.drawable.walrii_0);
 		
-		feed = new Feed(0, getResources());
+		feed = new Feed(0);
 		
 		walrusDrawer = new WalrifierDrawer();
 		walrusDrawer.setView(this);

@@ -2,5 +2,4 @@
 <resources>
 	<integer name="max_feed_length">10</integer>
 	<integer name="swipe_refresh_delta">150</integer>
-	<integer name="swipe_refresh_scroll_min_height">10</integer>
 </resources>
