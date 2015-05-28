@@ -84,7 +84,7 @@ public class FeedView implements OnTouchListener
 		
 		touchListener = new FeedViewTouchListener(container.getContext());
 		recycler.addOnItemTouchListener(touchListener);
-		
+
 		loadingAnim = (FeedLoadingBar) v.findViewById(R.id.loading); 
 		
 		return v;
