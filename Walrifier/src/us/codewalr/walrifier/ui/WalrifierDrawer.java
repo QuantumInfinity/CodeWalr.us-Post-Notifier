@@ -69,6 +69,6 @@ public class WalrifierDrawer implements ListView.OnItemClickListener
 		drawerList.setAdapter(adapter);
 		drawerList.setOnItemClickListener(this);
 				
-		//setFragment(0);
+		setFragment(0);
 	}
 }
