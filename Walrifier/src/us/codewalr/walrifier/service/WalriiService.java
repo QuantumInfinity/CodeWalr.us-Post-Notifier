@@ -43,6 +43,8 @@ public class WalriiService extends Service{
 							notification.setSmallIcon(R.drawable.walrii_0);
 							notification.setContentTitle("Walrifier");
 							notification.setContentText(newPosts.get(0).subject);
+							notification.setAutoCancel(true);
+							notification.setTicker("Walrified post: " + newPosts.get(0).subject);
 							Intent intent = new Intent(instance, Walrifier.class);
 							
 							TaskStackBuilder stackBuilder = TaskStackBuilder.create(instance);
