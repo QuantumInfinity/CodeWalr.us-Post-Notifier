@@ -24,7 +24,7 @@
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<service android:name=".WalriiService"
-		    android:exported="false"/>
+		<service android:name="us.codewalr.walrifier.service.WalriiService"
+		    android:label="WalriiService"/>
 	</application>
 </manifest>

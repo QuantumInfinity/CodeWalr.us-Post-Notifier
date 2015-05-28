@@ -1,6 +1,8 @@
 package us.codewalr.walrifier;
 
+import us.codewalr.walrifier.service.WalriiService;
 import us.codewalr.walrifier.ui.WalrifierDrawer;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -15,6 +17,8 @@ public class Walrifier extends AppCompatActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		System.out.println(startService(new Intent(this, WalriiService.class)));
+		
 		super.onCreate(savedInstanceState);
 		
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
