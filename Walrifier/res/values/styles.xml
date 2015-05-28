@@ -30,14 +30,14 @@
 		<item name="android:layout_gravity">start</item>
 		<item name="android:choiceMode">singleChoice</item>
 		<item name="android:divider">@color/drawer_divider</item>
-		<item name="android:dividerHeight">2dp</item>
+		<item name="android:dividerHeight">1dp</item>
 		<item name="android:background">@color/drawer_background</item>
 	</style>
 	
 	<style name="drawer_item">
 	    <item name="android:gravity">center_vertical|center_horizontal</item>
 		<item name="android:textSize">20sp</item>
-		<item name="android:textColor">@color/drawertext</item>
+		<item name="android:textColor">@color/drawer_text</item>
 		<item name="android:background">@drawable/bg_drawer_selected</item>
 	</style>
 	
@@ -47,14 +47,14 @@
 		<item name="android:layout_gravity">start</item>
 		<item name="android:choiceMode">singleChoice</item>
 		<item name="android:divider">@color/drawer_divider</item>
-		<item name="android:dividerHeight">2dp</item>
+		<item name="android:dividerHeight">1dp</item>
 		<item name="android:background">@color/credits_background</item>
 	</style>
 	
 	<style name="credits_item">
-	    <item name="android:gravity">center_vertical|center_horizontal</item>
-		<item name="android:textSize">20sp</item>
-		<item name="android:textColor">@color/creditstext</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:textColor">@color/credits_text</item>
+		<item name="android:padding">10dp</item>
 	</style>
 	
 	<!-- card -->
@@ -64,12 +64,12 @@
 	</style>
     
 	<style name="titlebar">
-		<item name="android:background">@color/titlebar</item>
+		<item name="android:background">@color/card_title_bar</item>
 	</style>
 	
 	<style name="title">
 		<item name="android:gravity">center_vertical</item>
-		<item name="android:textColor">@color/titletext</item>
+		<item name="android:textColor">@color/card_title_text</item>
 		<item name="android:textSize">16sp</item>
 		<item name="android:layout_marginLeft">10dp</item>
 		<item name="android:layout_marginTop">5dp</item>
@@ -79,7 +79,7 @@
 	<style name="time">
 		<item name="android:gravity">center_vertical|end</item>
 		<item name="android:textSize">13sp</item>
-		<item name="android:textColor">@color/timetext</item>
+		<item name="android:textColor">@color/card_time_text</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:layout_below">@id/title</item>
 		<item name="android:layout_marginLeft">10dp</item>
@@ -90,7 +90,7 @@
 	<style name="content">
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:textSize">15sp</item>
-		<item name="android:textColor">@color/contenttext</item>
+		<item name="android:textColor">@color/card_content_text</item>
 		<item name="android:layout_below">@id/titlebar</item>
 		<item name="android:layout_marginTop">5dp</item>
 		<item name="android:layout_marginLeft">10dp</item>
@@ -100,7 +100,7 @@
 	<style name="poster">
 	    <item name="android:gravity">center_vertical|end</item>
 		<item name="android:textSize">14sp</item>
-		<item name="android:textColor">@color/postertext</item>
+		<item name="android:textColor">@color/card_poster_text</item>
 		<item name="android:layout_alignParentRight">true</item>
 		<item name="android:textStyle">italic</item>
 		<item name="android:layout_below">@id/content</item>

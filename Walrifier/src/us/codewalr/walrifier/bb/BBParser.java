@@ -35,6 +35,8 @@ public class BBParser
 		bbMap.put("\\[h6\\](.+?)\\[/h6\\]", "<h6>$1</h6>");
 		bbMap.put("\\[move\\](.+?)\\[/move\\]", "<marquee>$1</marquee>");
 		bbMap.put("\\[quote\\](.+?)\\[/quote\\]", "<blockquote>$1</blockquote>");
+		bbMap.put("\\[quote author=(.+?) link=(.+?) date=(.+?)\\](.+?)\\[/quote\\]", "<blockquote>$4</blockquote>");
+		bbMap.put("\\[quote(.+?)\\](.+?)\\[/quote\\]", "<blockquote>$2</blockquote>");
 		bbMap.put("\\[code\\](.+?)\\[/code\\]", "<blockquote>$1</blockquote>");
 		bbMap.put("\\[p\\](.+?)\\[/p\\]", "<p>$1</p>");
 		bbMap.put("\\[p=(.+?),(.+?)\\](.+?)\\[/p\\]", "<p style='text-indent:$1px;line-height:$2%;'>$3</p>");

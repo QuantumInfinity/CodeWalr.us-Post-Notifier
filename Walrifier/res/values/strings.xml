@@ -20,9 +20,21 @@
 		<item>us.codewalr.walrifier.ui.CreditsFragment</item>
 	</string-array>
 	
-	<string-array name="credits_names">
-		<item>Robin Voetter</item>
-		<item>Brent Maas</item>
-		<item>Rick Teuthof</item>
+	<string-array name="credits_contributors">
+	    <item>Kevin Ouellet (DJ Omnimaga)</item>
+		<item>Robin Voetter (Cumred_Snektron)</item>
+		<item>Brent Maas (brentmaas)</item>
+		<item>Rick Teuthof (TheCoder1998)</item>
+		<item>CodeWalr.us</item>
+		<item>The Game</item>
+	</string-array>
+	
+	<string-array name="credits_actions">
+	    <item>Client on behalf of CodeWalrus</item>
+		<item>Developement</item>
+		<item>Developement</item>
+		<item>Developement</item>
+		<item>Being awesome :)</item>
+		<item>You lost</item>
 	</string-array>
 </resources>
