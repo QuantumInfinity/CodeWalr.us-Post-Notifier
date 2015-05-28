@@ -5,9 +5,12 @@
 	<item name="timetext" type="color">#D8D8D8</item>
 	<item name="contenttext" type="color">@android:color/black</item>
 	<item name="postertext" type="color">#C4C4C4</item>
-	<item name="drawer_divider" type="color">@android:color/transparent</item>
-	<item name="drawer_background" type="color">#111</item>
 	<item name="primary" type="color">#6EB489</item>
 	<item name="primary_dark" type="color">#4F7F61</item>
 	<item name="accent" type="color">@android:color/white</item>
+	
+	<item name="drawer_divider" type="color">#E4E5E6</item>
+	<item name="drawer_background" type="color">#F3F3F4</item>
+	<item name="drawer_background_selected" type="color">#6EB489</item>
+	<item name="drawertext" type="color">#252526</item>
 </resources>

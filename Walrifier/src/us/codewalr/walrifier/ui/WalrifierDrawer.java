@@ -62,13 +62,13 @@ public class WalrifierDrawer implements ListView.OnItemClickListener
 		classes = a.getResources().getStringArray(R.array.drawer_options_classes);
 		if (items.length != classes.length)
 			throw new IllegalArgumentException("Error: Names and classes lists should be the same length!");
-		adapter = new ArrayAdapter<>(a, android.R.layout.simple_list_item_1, items);
+		adapter = new ArrayAdapter<>(a, R.layout.draweritem, items);
 		
 		drawerLayout = (DrawerLayout) a.findViewById(R.id.drawer_layout);
 		drawerList = (ListView) a.findViewById(R.id.left_drawer);
 		drawerList.setAdapter(adapter);
 		drawerList.setOnItemClickListener(this);
-		
-		setFragment(0);
+				
+		//setFragment(0);
 	}
 }
