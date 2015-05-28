@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class CreditsFragment extends Fragment
 {
@@ -18,6 +20,10 @@ public class CreditsFragment extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		return inflater.inflate(R.layout.credits, container, false);
+		View creditsView = inflater.inflate(R.layout.credits, container, false);
+		ListView creditsList = (ListView) creditsView.findViewById(R.id.creditsListView);
+		String[] items = getResources().getStringArray(R.array.credits_names);
+		creditsList.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.creditsitem, items));
+		return creditsView;
 	}
 }
