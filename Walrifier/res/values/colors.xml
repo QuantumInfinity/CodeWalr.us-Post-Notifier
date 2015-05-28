@@ -15,5 +15,5 @@
 	<item name="drawertext" type="color">#252526</item>
 	
 	<item name="credits_background" type="color">@android:color/white</item>
-	<item name="creditstext" type="color">#6EB489</item>
+	<item name="creditstext" type="color">#252526</item>
 </resources>
