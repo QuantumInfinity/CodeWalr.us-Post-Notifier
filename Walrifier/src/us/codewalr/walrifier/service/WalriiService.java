@@ -25,10 +25,15 @@ public class WalriiService extends Service{
 	public int onStartCommand(Intent intent, int flags, int startID){
 		instance = this;
 		handler = new Handler();
+		feed = new Feed(-1, getResources());
+		feed.load(new IFeed(){
+			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed){
+				feed.push(newPosts);
+			}
+		});
 		
 		Runnable runnable = new Runnable(){
 			public void run(){
-				feed = new Feed(-1, getResources());
 				feed.load(new IFeed(){
 					@Override
 					public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed){
@@ -48,12 +53,11 @@ public class WalriiService extends Service{
 							
 							NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 							notificationManager.notify(1337, notification.build());
-							System.out.println("NOTIFIED: " + newPosts.get(0).subject);
 						}
 					}
 				});
 				
-				handler.postDelayed(this, 1000);
+				handler.postDelayed(this, 5000);
 			}
 		};
 		
