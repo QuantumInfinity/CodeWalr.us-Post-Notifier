@@ -3,10 +3,18 @@ package us.codewalr.walrifier.bb;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.xml.sax.XMLReader;
+
 import us.codewalr.walrifier.feed.WalrusAdapter;
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Editable;
 import android.text.Html;
+import android.text.Html.TagHandler;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.style.BackgroundColorSpan;
 import android.view.View;
 
 public class BBParser
@@ -19,49 +27,114 @@ public class BBParser
 	{
 		this.adapter = adapter;
 		this.ctx = ctx;
+
 		bbMap = new HashMap<String , String>();
-			
 		bbMap.put("(\r\n|\r|\n|\n\r)", "<br/>");
-		bbMap.put("\\[tt\\](.+?)\\[/tt\\]", "<tt>$1</tt>");
-		bbMap.put("\\[s\\](.+?)\\[/s\\]", "<s>$1</s>");
-		bbMap.put("\\[b\\](.+?)\\[/b\\]", "<b>$1</b>");
-		bbMap.put("\\[i\\](.+?)\\[/i\\]", "<i>$1</i>");
-		bbMap.put("\\[u\\](.+?)\\[/u\\]", "<u'>$1</u>");
-		bbMap.put("\\[h1\\](.+?)\\[/h1\\]", "<h1>$1</h1>");
-		bbMap.put("\\[h2\\](.+?)\\[/h2\\]", "<h2>$1</h2>");
-		bbMap.put("\\[h3\\](.+?)\\[/h3\\]", "<h3>$1</h3>");
-		bbMap.put("\\[h4\\](.+?)\\[/h4\\]", "<h4>$1</h4>");
-		bbMap.put("\\[h5\\](.+?)\\[/h5\\]", "<h5>$1</h5>");
-		bbMap.put("\\[h6\\](.+?)\\[/h6\\]", "<h6>$1</h6>");
-		bbMap.put("\\[move\\](.+?)\\[/move\\]", "<marquee>$1</marquee>");
-		bbMap.put("\\[quote\\](.+?)\\[/quote\\]", "<blockquote>$1</blockquote>");
-		bbMap.put("\\[quote author=(.+?) link=(.+?) date=(.+?)\\](.+?)\\[/quote\\]", "<blockquote>$4</blockquote>");
-		bbMap.put("\\[quote(.+?)\\](.+?)\\[/quote\\]", "<blockquote>$2</blockquote>");
-		bbMap.put("\\[code\\](.+?)\\[/code\\]", "<blockquote>$1</blockquote>");
-		bbMap.put("\\[p\\](.+?)\\[/p\\]", "<p>$1</p>");
-		bbMap.put("\\[p=(.+?),(.+?)\\](.+?)\\[/p\\]", "<p style='text-indent:$1px;line-height:$2%;'>$3</p>");
-		bbMap.put("\\[center\\](.+?)\\[/center\\]", "<div align='center'>$1</div>");
-		bbMap.put("\\[left\\](.+?)\\[/left\\]", "<div align='left'>$1</div>");
-		bbMap.put("\\[right\\](.+?)\\[/right\\]", "<div align='right'>$1</div>");
-		bbMap.put("\\[align=(.+?)\\](.+?)\\[/align\\]", "<div align='$1'>$2</div>");
-		bbMap.put("\\[color=(.+?)\\](.+?)\\[/color\\]", "<font color='$1'>$2</font>");
-		bbMap.put("\\[size=(.+?)\\](.+?)\\[/size\\]", "<font size='$1'>$2</font>");
+		
+		putTagsSimple("tt", "s", "b", "i", "u", "h1", "h2", "h3", "h4", "h5", "h6", "p", "sub", "sup");
+		putTagPlain("move", "marquee>");
+		putTagPlain("center", "div align='center'", "div");
+		putTagPlain("left", "div align='left'", "div>");
+		putTagPlain("right", "div align='right'", "div");
+		
+		bbMap.put("\\[url\\](.+?)\\[/url\\]", "<a href='$1'>$1</a>");
+		bbMap.put("\\[url=(.+?)\\](.+?)\\[/url\\]", "<a href='$1'>$2</a>");	
+		bbMap.put("\\[email=(.+?)\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$2</a>");
+		bbMap.put("\\[email\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$1</a>");
 		bbMap.put("\\[img\\](.+?)\\[/img\\]", "<img src='$1'/>");
 		bbMap.put("\\[img=(.+?),(.+?)\\](.+?)\\[/img\\]", "<img width='$1' height='$2' src='$3'/>");
-		bbMap.put("\\[email\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$1</a>");
-		bbMap.put("\\[email=(.+?)\\](.+?)\\[/email\\]", "<a href='mailto:$1'>$2</a>");
-		bbMap.put("\\[url\\](.+?)\\[/url\\]", "<a href='$1'>$1</a>");
-		bbMap.put("\\[url=(.+?)\\](.+?)\\[/url\\]", "<a href='$1'>$2</a>");
 		bbMap.put("\\[youtube\\](.+?)\\[/youtube\\]", "<a href='http://www.youtube.com/v/$1'>http://www.youtube.com/v/$1</a>");
+		bbMap.put("\\[size=(.+?)\\]", "<font size='$1'>");
+		bbMap.put("\\[/size\\]", "</font>");
+		bbMap.put("\\[align=(.+?)\\]", "<div align='$1'>");
+		bbMap.put("\\[/align\\]", "</div>");
+		bbMap.put("\\[color=(.+?)\\]", "<font color='$1'>");
+		bbMap.put("\\[/color\\]", "</font>");
+		bbMap.put("\\[quote\\]", "<blockquote>");
+		bbMap.put("\\[quote author=(.+?)(\\s+(.*?))?\\]", "<blockquote><font color='#696969'>quote by $1:\n</font>");
+		bbMap.put("\\[/quote\\]", "</blockquote>");
+		bbMap.put("\\[code\\]", "<blockquote><font color='#696969'>Code:\n</font>");
+		bbMap.put("\\[/code\\]", "</blockquote>");
+	}
+	
+	public void putTagPlain(String tag, String htmlOpen, String htmlClose)
+	{
+		bbMap.put("\\["+tag+"(.*?)\\]", "<"+htmlOpen+">");
+		bbMap.put("\\[/"+tag+"\\]", "</"+htmlClose+">");
+	}
+	
+	public void putTagPlain(String tag, String htmlTag)
+	{
+		putTagPlain(tag, htmlTag, htmlTag);
+	}
+	
+	public void putTagSimple(String tag)
+	{
+		putTagPlain(tag, tag);
+	}
+	
+	public void putTagsSimple(String... tags)
+	{
+		for (int i=0; i<tags.length; i++)
+			putTagSimple(tags[i]);
 	}
 	
 	public Spanned parse(String text, int post, View container)
 	{
 		String html = text;
-
 		for (Map.Entry<String, String> entry: bbMap.entrySet())
 			html = html.replaceAll(entry.getKey().toString(), entry.getValue().toString());
-
+		html = html.replace("<br />", "");
 		return Html.fromHtml(html, new BBImageGetter(ctx, adapter, post, container), null);
     }
+	
+	@Deprecated
+	public class BBTagHandler implements TagHandler
+	{
+		@Override
+		public void handleTag(boolean opening, String tag, Editable output, XMLReader xmlReader)
+		{
+			if(tag.equalsIgnoreCase("bbquote"))
+				handleBBQuote(opening, output);
+			if(tag.equalsIgnoreCase("wtf"))
+				output.append((char) 00);
+		}
+		
+		public void handleBBQuote(boolean opening, Editable output)
+		{
+			if (opening)
+				start((SpannableStringBuilder) output, new BBQuote());
+			else
+				end((SpannableStringBuilder) output, BBQuote.class, new BackgroundColorSpan(Color.RED));
+		}
+		
+		private <T> Object getLast(Spanned text, Class<T> kind)
+		{
+			Object[] objs = text.getSpans(0, text.length(), kind);
+		    if (objs.length == 0)
+		    	return null;
+		    else
+		    	return objs[objs.length - 1];
+		}
+		
+		private void start(SpannableStringBuilder text, Object mark)
+		{ 
+			int len = text.length();
+			text.setSpan(mark, len, len, Spannable.SPAN_MARK_MARK);
+		}
+
+		private <T> void end(SpannableStringBuilder text, Class<T> kind, Object repl)
+		{
+			int len = text.length();
+			Object obj = getLast(text, kind);
+			int where = text.getSpanStart(obj);
+
+			text.removeSpan(obj);
+			
+			if (where != len && where != 0)
+		    	text.setSpan(repl, where, len, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
+		
+		private class BBQuote{}
+	}
 }
