@@ -32,9 +32,9 @@ public class BBParser
 		bbMap.put("(\r\n|\r|\n|\n\r)", "<br/>");
 		
 		putTagsSimple("tt", "s", "b", "i", "u", "h1", "h2", "h3", "h4", "h5", "h6", "p", "sub", "sup");
-		putTagPlain("move", "marquee>");
+		putTagPlain("move", "marquee");
 		putTagPlain("center", "div align='center'", "div");
-		putTagPlain("left", "div align='left'", "div>");
+		putTagPlain("left", "div align='left'", "div");
 		putTagPlain("right", "div align='right'", "div");
 		
 		bbMap.put("\\[url\\](.+?)\\[/url\\]", "<a href='$1'>$1</a>");
@@ -51,7 +51,7 @@ public class BBParser
 		bbMap.put("\\[color=(.+?)\\]", "<font color='$1'>");
 		bbMap.put("\\[/color\\]", "</font>");
 		bbMap.put("\\[quote\\]", "<blockquote>");
-		bbMap.put("\\[quote author=(.+?)(\\s+(.*?))?\\]", "<blockquote><font color='#696969'>quote by $1:\n</font>");
+		bbMap.put("\\[quote author=(.+?)(\\s+(.*?))?\\]", "<blockquote><font color='#696969'>Quote by $1:\n</font>");
 		bbMap.put("\\[/quote\\]", "</blockquote>");
 		bbMap.put("\\[code\\]", "<blockquote><font color='#696969'>Code:\n</font>");
 		bbMap.put("\\[/code\\]", "</blockquote>");
@@ -59,7 +59,7 @@ public class BBParser
 	
 	public void putTagPlain(String tag, String htmlOpen, String htmlClose)
 	{
-		bbMap.put("\\["+tag+"(.*?)\\]", "<"+htmlOpen+">");
+		bbMap.put("\\["+tag+"\\]", "<"+htmlOpen+">");
 		bbMap.put("\\[/"+tag+"\\]", "</"+htmlClose+">");
 	}
 	
