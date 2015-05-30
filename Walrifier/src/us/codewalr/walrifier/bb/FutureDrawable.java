@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 
@@ -20,6 +21,7 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 	Resources res;
 	int post;
 	View container;
+	Paint alpha;
 	
 	public FutureDrawable(Resources res, WalrusAdapter adapter, int post, View container)
 	{
@@ -33,6 +35,8 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 		this.adapter = adapter;
 		this.post = post;
 		this.container = container;
+		this.alpha = new Paint();
+		alpha.setAlpha(100);
 	}
 	
 	private static Bitmap getPlaceholder(Resources res)
@@ -64,7 +68,7 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 		if (image == null)
 			super.draw(canvas);
 		else
-			image.draw(canvas);
+			canvas.drawBitmap(image.getBitmap(), 0, 0, null);
 	}
 	
 	private BitmapDrawable fixSize(Bitmap image, int parentWidth)
@@ -72,7 +76,8 @@ public class FutureDrawable extends BitmapDrawable implements FutureCallback<Inp
 		float ratio = (float) image.getHeight() / (float) image.getWidth();
 		float newWidth = Math.min(image.getWidth(), parentWidth);
 		float newHeight = newWidth * ratio;
-		Bitmap newImage = Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, false);
+		Bitmap newImage = Bitmap.createScaledBitmap(image, (int) newWidth, (int) newHeight, true);
+
 		return new BitmapDrawable(res, newImage);
 	}
 	
