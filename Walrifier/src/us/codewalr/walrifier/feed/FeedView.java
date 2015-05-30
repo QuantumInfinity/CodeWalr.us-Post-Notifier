@@ -61,8 +61,8 @@ public class FeedView implements OnTouchListener
 		
 		layoutManager = new LinearLayoutManager(a);
 		recycler.setLayoutManager(layoutManager);
-
-		adapter = new WalrusAdapter(a, new ArrayList<Post>());
+		if (adapter == null)
+			adapter = new WalrusAdapter(a, new ArrayList<Post>());
 		recycler.setAdapter(adapter);
 		
 		loadingAnim = (FeedLoadingBar) a.findViewById(R.id.loading);

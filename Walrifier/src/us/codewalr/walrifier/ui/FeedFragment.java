@@ -9,14 +9,15 @@ import android.view.ViewGroup;
 
 public class FeedFragment extends Fragment
 {
-	private FeedView feedView;
+	private FeedView feedView = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
-		feedView = new FeedView(getActivity());	
+		
+		if (feedView == null)
+			feedView = new FeedView(getActivity());	
 	}
 
 	@Override

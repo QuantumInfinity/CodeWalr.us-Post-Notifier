@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<us.codewalr.walrifier.ui.PreferenceCategoryColored
+		android:title="Service settings">
+
+		<CheckBoxPreference
+			android:key="run_service"
+			android:title="Run Walrifier service"
+			android:summaryOn="Service is running"
+			android:summaryOff="Service is not running"
+			android:defaultValue="true"
+			android:icon="@android:color/transparent"/>
+
+	</us.codewalr.walrifier.ui.PreferenceCategoryColored>
+</PreferenceScreen>

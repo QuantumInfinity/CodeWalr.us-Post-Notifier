@@ -39,6 +39,7 @@
 		<item name="android:textSize">20sp</item>
 		<item name="android:textColor">@color/drawer_text</item>
 		<item name="android:background">@drawable/bg_drawer_selected</item>
+		<item name="android:orientation">horizontal</item>
 	</style>
 	
 	<!-- credits layout -->

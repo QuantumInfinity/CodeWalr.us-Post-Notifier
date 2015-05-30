@@ -14,12 +14,6 @@
 		<item>Credits</item>
 	</string-array>
 	
-	<string-array name="drawer_options_classes">
-		<item>us.codewalr.walrifier.ui.FeedFragment</item>
-		<item>us.codewalr.walrifier.ui.FeedFragment</item>
-		<item>us.codewalr.walrifier.ui.CreditsFragment</item>
-	</string-array>
-	
 	<string-array name="credits_contributors">
 	    <item>Kevin Ouellet (DJ Omnimaga)</item>
 		<item>Robin Voetter (Cumred_Snektron)</item>
@@ -37,4 +31,11 @@
 		<item>Being awesome :)</item>
 		<item>You lost</item>
 	</string-array>
+	
+	<!--  Strings for possible PreferenceActivity Back/Next buttons -->
+	<string name="back_button_label">Back</string>
+	<string name="next_button_label">Next</string>
+
+	<!-- Optional button to Skip a PreferenceActivity [CHAR LIMIT=20] -->
+	<string name="skip_button_label">Skip</string>
 </resources>
