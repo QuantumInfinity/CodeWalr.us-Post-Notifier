@@ -84,7 +84,6 @@ public class BBParser
 		String html = text;
 		for (Map.Entry<String, String> entry: bbMap.entrySet())
 			html = html.replaceAll(entry.getKey().toString(), entry.getValue().toString());
-		html = html.replace("<br />", "");
 		return Html.fromHtml(html, new BBImageGetter(ctx, adapter, post, container), null);
     }
 	

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Walrifier</string>
-	<string name="forum_url">http://quantuminfinity.space/forum</string>
+	<string name="forum_url">http://codewalr.us/</string>
 	<string name="forum_walrifier_action">/index.php?action=walrifier&amp;id=%ID%</string>
 	<string name="forum_msg_link_format" formatted="false">/index.php?topic=%TOPIC%.msg%POST%</string>
 	<string name="action_settings">Settings</string>
