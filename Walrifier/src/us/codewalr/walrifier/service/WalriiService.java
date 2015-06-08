@@ -19,44 +19,36 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
 public class WalriiService extends Service{
-	public WalriiService instance;
-	public Feed feed;
+	public Feed feed = null;
 	public Handler handler;
-	public long delaytime;
+	public Long delaytime = null;
 	public Runnable updateChecker;
+	public Boolean useData = null;
 	
-	public int onStartCommand(Intent intent, int flags, int startID){
-		instance = this;
-		handler = new Handler();
-		feed = new Feed(-1, getResources());
-		feed.load(new IFeed(){
-			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed){
-				feed.push(newPosts);
-			}
-		});
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
 		
-		if (intent == null)
-			delaytime = 60000L;
-		else
-			delaytime = intent.getIntExtra("service_check_time", 60) * 1000L;
+		handler = new Handler();
 		
 		updateChecker = new Runnable(){
 			public void run(){
 				feed.load(new IFeed(){
 					@Override
-					public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed){
+					public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed, String reason){
 						if(!failed && hasNewPosts){
 							feed.push(newPosts);
-							NotificationCompat.Builder notification = new NotificationCompat.Builder(instance);
+							NotificationCompat.Builder notification = new NotificationCompat.Builder(WalriiService.this);
 							notification.setSmallIcon(R.drawable.walrii_0);
 							notification.setContentTitle("Walrifier");
 							notification.setContentText(newPosts.get(0).subject);
 							notification.setAutoCancel(true);
 							notification.setTicker("Walrified post: " + newPosts.get(0).subject);
 							notification.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-							Intent intent = new Intent(instance, Walrifier.class);
+							Intent intent = new Intent(WalriiService.this, Walrifier.class);
 							
-							TaskStackBuilder stackBuilder = TaskStackBuilder.create(instance);
+							TaskStackBuilder stackBuilder = TaskStackBuilder.create(WalriiService.this);
 							stackBuilder.addParentStack(Walrifier.class);
 							stackBuilder.addNextIntent(intent);
 							PendingIntent pIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -66,13 +58,32 @@ public class WalriiService extends Service{
 							notificationManager.notify(1337, notification.build());
 						}
 					}
-				});
+				}, useData);
 				
 				handler.postDelayed(this, delaytime);
 			}
 		};
+	}
+	
+	public int onStartCommand(Intent intent, int flags, int startID){		
+		if (intent == null && useData != null && delaytime != null)
+			return START_STICKY;
 		
-		handler.post(updateChecker);
+		delaytime = (intent == null ? 60 : intent.getIntExtra("service_check_time", 60)) * 1000L;
+		useData = intent == null ? false : intent.getBooleanExtra("use_data", false);
+		
+		if (feed == null)
+		{
+			feed = new Feed(-1, this);
+			feed.load(new IFeed(){
+				public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed, String reason){
+					feed.push(newPosts);
+				}
+			}, useData);
+		}
+		
+		handler.removeCallbacks(updateChecker);
+		handler.postDelayed(updateChecker, 1000);
 		
 		return START_STICKY;
 	}

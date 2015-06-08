@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.util.RBuffer;
-import android.content.res.Resources;
+import android.content.Context;
 import android.os.AsyncTask.Status;
 
 public class Feed
@@ -15,23 +15,23 @@ public class Feed
 	int lastID;
 	IFeed onLoaded;
 	FeedLoader currentTask;
-	Resources res;
+	Context ctx;
 	
-	public Feed(int lastID, Resources res)
+	public Feed(int lastID, Context ctx)
 	{
 		this.lastID = lastID;
-		this.res = res;
-		lastPosts = new RBuffer<Post>(res.getInteger(R.integer.max_feed_length));
+		this.ctx = ctx;
+		lastPosts = new RBuffer<Post>(ctx.getResources().getInteger(R.integer.max_feed_length));
 		lastPosts.fill(null);
 		hasChanged = false;
 	}
 	
-	public boolean load(IFeed onFinished)
+	public boolean load(IFeed onFinished, boolean useData)
 	{
 		if (currentTask == null || currentTask.getStatus() != Status.RUNNING)
 		{
-			currentTask = new FeedLoader(res, onFinished, lastID);
-			currentTask.execute();
+			currentTask = new FeedLoader(ctx, onFinished, lastID);
+			currentTask.execute(useData);
 			return true;
 		}
 		return false;

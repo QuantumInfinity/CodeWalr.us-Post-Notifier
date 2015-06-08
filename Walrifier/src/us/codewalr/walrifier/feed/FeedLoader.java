@@ -11,29 +11,49 @@ import java.util.regex.Pattern;
 
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
-import android.content.res.Resources;
+import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
-public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
+public class FeedLoader extends AsyncTask<Boolean, Void, ArrayList<Post>>
 {
-	Resources res;
+	Context ctx;
 	IFeed onFinished;
 	int since;
+	String fail = null;
 	
-	public FeedLoader(Resources res, IFeed onFinished, int since)
+	public FeedLoader(Context ctx, IFeed onFinished, int since)
 	{
 		this.onFinished = onFinished;
 		this.since = since;
-		this.res = res;
+		this.ctx = ctx;
 	}
 	
 	@Override
-	protected ArrayList<Post> doInBackground(Void... params)
+	protected ArrayList<Post> doInBackground(Boolean... useData)
 	{
-		String url = res.getString(R.string.forum_url)+res.getString(R.string.forum_walrifier_action).replace("%ID%", since + "");
+		ConnectivityManager connManager = (ConnectivityManager) ctx.getSystemService(Activity.CONNECTIVITY_SERVICE);
+	    NetworkInfo wifiInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+	    NetworkInfo mobileInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+		
+	    if (wifiInfo.isConnected() == false && mobileInfo.isConnected() == false)
+	    {
+	    	fail = "No WiFi/Mobile data connection";
+	    	return null;
+	    }
+	    else if (wifiInfo.isConnected() == false && mobileInfo.isConnected() == true && !useData[0])
+	    {
+	    	fail = "No WiFi connection";
+	    	return null;
+	    }
+		
+		String url = ctx.getResources().getString(R.string.forum_url)+ctx.getResources().getString(R.string.forum_walrifier_action).replace("%ID%", since + "");
 		HttpURLConnection urlConnection = null;
 		try{
 			urlConnection = (HttpURLConnection) new URL(url).openConnection();
+			urlConnection.setConnectTimeout(5000);
 			BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 			StringBuilder total = new StringBuilder();
 			String line;
@@ -42,6 +62,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 			return parse(total.toString());
 		} catch (IOException e)
 		{
+			fail = e.getLocalizedMessage();
 			return null;
 		}finally
 		{
@@ -53,7 +74,7 @@ public class FeedLoader extends AsyncTask<Void, Void, ArrayList<Post>>
 	protected void onPostExecute(ArrayList<Post> result)
 	{
 		super.onPostExecute(result);
-		onFinished.onFeedLoaded(result, result != null && result.size() != 0, result == null);
+		onFinished.onFeedLoaded(result, result != null && result.size() != 0, result == null, fail == null ? "Unknown error" : fail);
 	}
 	
 	public ArrayList<Post> parse(String str)

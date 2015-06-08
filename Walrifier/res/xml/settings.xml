@@ -25,4 +25,12 @@
 			android:dependency="run_service"/>
 		
 	</us.codewalr.walrifier.util.PreferenceCategoryColored>
+	
+	<CheckBoxPreference
+		android:key="use_data"
+		android:title="Check using mobile data"
+		android:summaryOn="App is using both WiFi and mobile data"
+		android:summaryOff="App is only using WiFi"
+		android:defaultValue="false"/>
+		
 </PreferenceScreen>

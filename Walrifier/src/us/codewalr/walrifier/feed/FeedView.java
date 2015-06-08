@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import us.codewalr.walrifier.Post;
 import us.codewalr.walrifier.R;
 import us.codewalr.walrifier.Walrifier;
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -28,44 +27,28 @@ public class FeedView implements OnTouchListener
 	private int activationDelta, scrollMinHeight;
 	private FeedViewTouchListener touchListener;
 	private Feed feed;
+	private Context ctx;
 	
 	public FeedView(final Context ctx)
 	{
-		feed = new Feed(0, ctx.getResources());
+		feed = new Feed(0, ctx);
+		this.ctx = ctx;
 		
 		onLoad = new IFeed()
 		{
 			@Override
-			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed)
+			public void onFeedLoaded(ArrayList<Post> newPosts, boolean hasNewPosts, boolean failed, String reason)
 			{
 				adapter.setPosts(feed.push(newPosts));
 				adapter.notifyDataSetChanged();
 				loadingAnim.hide();
 				if (failed)
-					Toast.makeText(ctx, ctx.getString(R.string.feed_load_failed), Toast.LENGTH_SHORT).show();
+					Toast.makeText(ctx, ctx.getString(R.string.feed_load_failed) + " " + reason, Toast.LENGTH_SHORT).show();
 			}
 		};
 		
 		activationDelta = Walrifier.getPixels(ctx.getResources().getDisplayMetrics(), ctx.getResources().getInteger(R.integer.swipe_refresh_delta));
 		scrollMinHeight = Walrifier.getPixels(ctx.getResources().getDisplayMetrics(), ctx.getResources().getInteger(R.integer.swipe_refresh_scroll_min_height));
-	}
-	
-	@Deprecated
-	public void setView(Activity a)
-	{
-		a.setContentView(R.layout.walrifierlayout);
-
-		recycler = (RecyclerView) a.findViewById(R.id.recycler);
-		recycler.setHasFixedSize(true);
-		recycler.setOnTouchListener(this);
-		
-		layoutManager = new LinearLayoutManager(a);
-		recycler.setLayoutManager(layoutManager);
-		if (adapter == null)
-			adapter = new WalrusAdapter(a, new ArrayList<Post>());
-		recycler.setAdapter(adapter);
-		
-		loadingAnim = (FeedLoadingBar) a.findViewById(R.id.loading);
 	}
 	
 	public View setFragment(ViewGroup container, LayoutInflater inflater)
@@ -92,7 +75,7 @@ public class FeedView implements OnTouchListener
 	
 	public boolean updateFeed()
 	{
-		boolean success = feed.load(onLoad);
+		boolean success = feed.load(onLoad, Walrifier.getSettings(ctx).getBoolean("use_data", false));
 		if (success)
 			loadingAnim.show();
 		return success;

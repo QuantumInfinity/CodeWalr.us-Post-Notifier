@@ -39,7 +39,7 @@ public class Walrifier extends AppCompatActivity
 		return PreferenceManager.getDefaultSharedPreferences(ctx);
 	}	
 	
-	public static void restartServie(Activity a)
+	public static void restartService(Activity a)
 	{
 		stopWalrusService(a);
 		startWalrusService(a);
@@ -51,6 +51,7 @@ public class Walrifier extends AppCompatActivity
 		{
 			Intent service = new Intent(a, WalriiService.class);
 			service.putExtra("service_check_time", Walrifier.getSettings(a).getInt("service_check_time", 60));
+			service.putExtra("use_data", Walrifier.getSettings(a).getBoolean("use_data", false));
 			a.startService(service);
 		}
 		if (isServiceRunning(a, WalriiService.class) && !Walrifier.getSettings(a).getBoolean("run_service", true))

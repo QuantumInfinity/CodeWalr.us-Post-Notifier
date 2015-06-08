@@ -58,7 +58,10 @@ public class SettingsFragment extends PreferenceFragment
 			}
 			break;
 		case "service_check_time":
-			Walrifier.restartServie(main);
+			Walrifier.restartService(main);
+			break;
+		case "use_data":
+			Walrifier.restartService(main);
 			break;
 		}
 	}

@@ -6,5 +6,5 @@ import us.codewalr.walrifier.Post;
 
 public interface IFeed
 {
-	 public void onFeedLoaded(ArrayList<Post> posts, boolean hasNewPosts, boolean failed);
+	 public void onFeedLoaded(ArrayList<Post> posts, boolean hasNewPosts, boolean failed, String reason);
 }
