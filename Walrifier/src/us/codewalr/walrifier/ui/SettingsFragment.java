@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.support.v4.preference.PreferenceFragment;
-import android.util.Log;
+
+import com.robobunny.SeekBarPreference;
+import com.robobunny.SeekBarPreference.ProgressChangeListener;
 
 public class SettingsFragment extends PreferenceFragment
 {	
@@ -23,6 +25,16 @@ public class SettingsFragment extends PreferenceFragment
 	{
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings);
+		
+		SeekBarPreference seekbar = (SeekBarPreference) findPreference("service_check_time");
+		seekbar.setPCL(new ProgressChangeListener()
+		{
+			@Override
+			public void onProgressChanged(SeekBarPreference sbp)
+			{
+				onPreferenceChange("service_check_time");
+			}
+		});
 	}
 
 	@Override
@@ -39,13 +51,14 @@ public class SettingsFragment extends PreferenceFragment
 		case "run_service":
 			if (Walrifier.getSettings(main).getBoolean(key, true))
 			{
-				Log.v(Walrifier.TAG, "Starting service");
 				Walrifier.startWalrusService(main);
 			}else
 			{
-				Log.v(Walrifier.TAG, "Stopping service");
 				Walrifier.stopWalrusService(main);
 			}
+			break;
+		case "service_check_time":
+			Walrifier.restartServie(main);
 			break;
 		}
 	}

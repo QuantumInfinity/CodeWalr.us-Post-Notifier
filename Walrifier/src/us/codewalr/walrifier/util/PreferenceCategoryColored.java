@@ -1,4 +1,4 @@
-package us.codewalr.walrifier.ui;
+package us.codewalr.walrifier.util;
 
 import us.codewalr.walrifier.R;
 import android.content.Context;

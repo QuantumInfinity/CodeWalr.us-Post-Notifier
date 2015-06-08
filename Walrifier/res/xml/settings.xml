@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-	<us.codewalr.walrifier.ui.PreferenceCategoryColored
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:robobunny="http://robobunny.com">
+    
+	<us.codewalr.walrifier.util.PreferenceCategoryColored
 		android:title="Service settings">
 
 		<CheckBoxPreference
@@ -8,8 +11,18 @@
 			android:title="Run Walrifier service"
 			android:summaryOn="Service is running"
 			android:summaryOff="Service is not running"
-			android:defaultValue="true"
-			android:icon="@android:color/transparent"/>
-
-	</us.codewalr.walrifier.ui.PreferenceCategoryColored>
+			android:defaultValue="true"/>
+		
+		<com.robobunny.SeekBarPreference
+			android:key="service_check_time"
+			android:title="Time between checks"
+			android:summary="The time to wait between update checks"
+			android:defaultValue="60"
+            android:max="600"
+            robobunny:min="10"
+            robobunny:unitsLeft=""
+            robobunny:unitsRight=" seconds"
+			android:dependency="run_service"/>
+		
+	</us.codewalr.walrifier.util.PreferenceCategoryColored>
 </PreferenceScreen>

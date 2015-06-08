@@ -12,6 +12,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
@@ -21,6 +22,8 @@ public class WalriiService extends Service{
 	public WalriiService instance;
 	public Feed feed;
 	public Handler handler;
+	public long delaytime;
+	public Runnable updateChecker;
 	
 	public int onStartCommand(Intent intent, int flags, int startID){
 		instance = this;
@@ -32,7 +35,12 @@ public class WalriiService extends Service{
 			}
 		});
 		
-		Runnable runnable = new Runnable(){
+		if (intent == null)
+			delaytime = 60000L;
+		else
+			delaytime = intent.getIntExtra("service_check_time", 60) * 1000L;
+		
+		updateChecker = new Runnable(){
 			public void run(){
 				feed.load(new IFeed(){
 					@Override
@@ -45,6 +53,7 @@ public class WalriiService extends Service{
 							notification.setContentText(newPosts.get(0).subject);
 							notification.setAutoCancel(true);
 							notification.setTicker("Walrified post: " + newPosts.get(0).subject);
+							notification.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 							Intent intent = new Intent(instance, Walrifier.class);
 							
 							TaskStackBuilder stackBuilder = TaskStackBuilder.create(instance);
@@ -59,13 +68,19 @@ public class WalriiService extends Service{
 					}
 				});
 				
-				handler.postDelayed(this, 5000);
+				handler.postDelayed(this, delaytime);
 			}
 		};
 		
-		handler.post(runnable);
+		handler.post(updateChecker);
 		
 		return START_STICKY;
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		handler.removeCallbacks(updateChecker);
 	}
 	
 	public IBinder onBind(Intent intent){
